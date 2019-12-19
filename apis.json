@@ -1,0 +1,81 @@
+{
+    "name": "Chef",
+    "description": "Automation for all of your technology. Overcome the complexity and rapidly ship your infrastructure and apps anywhere with automation.",
+    "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/1668-chef.jpg",
+    "tags": [
+        "api service provider",
+        "have api",
+        "orchestration"
+    ],
+    "created": "2019-12-19",
+    "modified": "2019-12-19",
+    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/chef\/master\/apis.json",
+    "specificationVersion": "0.14",
+    "apis": [
+        {
+            "name": "Chef",
+            "description": null,
+            "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/1668-chef.jpg",
+            "humanURL": "https:\/\/www.chef.io\/",
+            "baseURL": "",
+            "tags": [],
+            "properties": [
+                {
+                    "type": "x-openapi",
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/chef-openapi.json"
+                }
+            ]
+        }
+    ],
+    "include": [],
+    "x-common": [
+        {
+            "type": "Blog RSS",
+            "url": "https:\/\/www.chef.io\/blog\/feed\/"
+        },
+        {
+            "type": "Crunchbase",
+            "url": "https:\/\/crunchbase.com\/organization\/chef"
+        },
+        {
+            "type": "Email",
+            "url": "info@chef.io"
+        },
+        {
+            "type": "Email",
+            "url": "europe-info@chef.io"
+        },
+        {
+            "type": "Email",
+            "url": "privacy@chef.io"
+        },
+        {
+            "type": "Email",
+            "url": "legal@chef.io"
+        },
+        {
+            "type": "Email",
+            "url": "support@chef.io"
+        },
+        {
+            "type": "Email",
+            "url": "marketing@chef.io"
+        },
+        {
+            "type": "Github",
+            "url": "https:\/\/github.com\/chef"
+        },
+        {
+            "type": "Twitter",
+            "url": "https:\/\/twitter.com\/chef"
+        },
+        {
+            "type": "Blog",
+            "url": "https:\/\/www.chef.io\/blog\/"
+        },
+        {
+            "type": "Website",
+            "url": "https:\/\/www.chef.io\/"
+        }
+    ]
+}
