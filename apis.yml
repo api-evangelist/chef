@@ -1,0 +1,115 @@
+name: Chef APIs
+description: Collection of APIs provided by Chef (Progress Chef) for infrastructure automation, compliance, and application delivery
+image: https://www.chef.io/themes/custom/chef/logo.svg
+created: 2024-01-15 00:00:00+00:00
+modified: 2024-01-15 00:00:00+00:00
+url: https://www.chef.io/apis.json
+specificationVersion: '0.16'
+tags:
+- Infrastructure as Code
+- Configuration Management
+- DevOps
+- Compliance
+- Automation
+apis:
+- name: Chef Infra Server API
+  description: REST API for managing nodes, cookbooks, roles, environments, and other Chef Infra objects
+  image: https://www.chef.io/themes/custom/chef/logo.svg
+  humanURL: https://docs.chef.io/server/api_chef_server/
+  baseURL: https://api.chef.io/organizations/{org}
+  tags:
+  - Infrastructure
+  - Configuration Management
+  - REST API
+  properties:
+  - type: Documentation
+    url: https://docs.chef.io/server/api_chef_server/
+  - type: OpenAPI
+    url: https://docs.chef.io/api_chef_server.html
+  - type: Authentication
+    url: https://docs.chef.io/server/server_security/
+  contact:
+  - FN: Chef Support
+    email: support@chef.io
+    url: https://www.chef.io/support
+- name: Chef Automate API
+  description: API for Chef Automate providing visibility into infrastructure, compliance, and application deployment
+  image: https://www.chef.io/themes/custom/chef/logo.svg
+  humanURL: https://docs.chef.io/automate/api/
+  baseURL: https://automate.example.com/api/v0
+  tags:
+  - Automation
+  - Compliance
+  - Observability
+  - REST API
+  properties:
+  - type: Documentation
+    url: https://docs.chef.io/automate/api/
+  - type: OpenAPI
+    url: https://docs.chef.io/automate/api_swagger/
+  - type: Authentication
+    url: https://docs.chef.io/automate/api_tokens/
+  contact:
+  - FN: Chef Support
+    email: support@chef.io
+    url: https://www.chef.io/support
+- name: Chef Habitat Builder API
+  description: API for Chef Habitat Builder to manage application packages and origins
+  image: https://www.chef.io/themes/custom/chef/logo.svg
+  humanURL: https://docs.habitat.sh/docs/using-builder/
+  baseURL: https://bldr.habitat.sh/v1
+  tags:
+  - Application Packaging
+  - Deployment
+  - REST API
+  properties:
+  - type: Documentation
+    url: https://docs.habitat.sh/docs/using-builder/
+  - type: Authentication
+    url: https://docs.habitat.sh/docs/using-builder/#builder-token
+  contact:
+  - FN: Chef Support
+    email: support@chef.io
+    url: https://www.chef.io/support
+- name: Chef InSpec API
+  description: API for running compliance and security tests programmatically
+  image: https://www.chef.io/themes/custom/chef/logo.svg
+  humanURL: https://docs.chef.io/inspec/
+  baseURL: https://api.chef.io/compliance
+  tags:
+  - Compliance
+  - Security
+  - Testing
+  - REST API
+  properties:
+  - type: Documentation
+    url: https://docs.chef.io/inspec/api/
+  - type: GitHub Repository
+    url: https://github.com/inspec/inspec
+  contact:
+  - FN: Chef Support
+    email: support@chef.io
+    url: https://www.chef.io/support
+maintainers:
+- FN: Progress Chef
+  email: info@chef.io
+  url: https://www.chef.io/contact-us
+common:
+- type: Getting Started
+  url: https://docs.chef.io/
+- type: Blog
+  url: https://www.chef.io/blog
+- type: GitHub Organization
+  url: https://github.com/chef
+- type: Support
+  url: https://www.chef.io/support
+- type: Training
+  url: https://training.chef.io/
+- type: Community
+  url: https://community.chef.io/
+- type: Status
+  url: https://status.chef.io/
+- type: Terms of Service
+  url: https://www.chef.io/terms-of-service
+- type: Privacy Policy
+  url: https://www.chef.io/privacy-policy
