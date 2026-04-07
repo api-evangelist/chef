@@ -3,11 +3,11 @@ url: >-
   https://raw.githubusercontent.com/api-evangelist/chef/refs/heads/main/apis.yml
 name: Chef
 tags:
-  - Infrastructure as Code
+  - Automation
+  - Compliance
   - Configuration Management
   - DevOps
-  - Compliance
-  - Automation
+  - Infrastructure as Code
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 access: 3rd-Party
@@ -23,8 +23,8 @@ apis:
   - aid: chef:chef-infra-server-api
     name: Chef Infra Server API
     tags:
-      - Infrastructure
       - Configuration Management
+      - Infrastructure
     humanURL: https://docs.chef.io/server/api_chef_server/
     properties:
       - url: https://docs.chef.io/server/api_chef_server/
