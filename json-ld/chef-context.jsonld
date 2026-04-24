@@ -1,0 +1,86 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "chef": "https://docs.chef.io/schemas/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+
+    "Node": {
+      "@id": "chef:Node",
+      "@context": {
+        "name": "schema:name",
+        "chef_environment": "chef:chefEnvironment",
+        "run_list": "chef:runList",
+        "automatic": "chef:automaticAttributes",
+        "default": "chef:defaultAttributes",
+        "override": "chef:overrideAttributes"
+      }
+    },
+
+    "Cookbook": {
+      "@id": "chef:Cookbook",
+      "@context": {
+        "name": "schema:name",
+        "version": "schema:version",
+        "url": {
+          "@id": "schema:url",
+          "@type": "@id"
+        }
+      }
+    },
+
+    "Role": {
+      "@id": "chef:Role",
+      "@context": {
+        "name": "schema:name",
+        "description": "schema:description",
+        "run_list": "chef:runList",
+        "default_attributes": "chef:defaultAttributes",
+        "override_attributes": "chef:overrideAttributes"
+      }
+    },
+
+    "Environment": {
+      "@id": "chef:Environment",
+      "@context": {
+        "name": "schema:name",
+        "description": "schema:description",
+        "cookbook_versions": "chef:cookbookVersions"
+      }
+    },
+
+    "ComplianceProfile": {
+      "@id": "chef:ComplianceProfile",
+      "@context": {
+        "name": "schema:name",
+        "title": "schema:headline",
+        "version": "schema:version",
+        "summary": "schema:description"
+      }
+    },
+
+    "ScanReport": {
+      "@id": "chef:ScanReport",
+      "@context": {
+        "id": "chef:reportId",
+        "nodeId": "chef:nodeId",
+        "endTime": {
+          "@id": "chef:endTime",
+          "@type": "xsd:dateTime"
+        },
+        "status": "chef:status"
+      }
+    },
+
+    "HabitatPackage": {
+      "@id": "chef:HabitatPackage",
+      "@context": {
+        "origin": "chef:origin",
+        "name": "schema:name",
+        "version": "schema:version",
+        "release": "chef:release"
+      }
+    }
+  }
+}

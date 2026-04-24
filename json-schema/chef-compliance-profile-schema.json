@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://docs.chef.io/schemas/compliance-profile.json",
+  "title": "Chef Compliance Profile",
+  "type": "object",
+  "required": ["name", "version"],
+  "properties": {
+    "name": { "type": "string" },
+    "title": { "type": "string" },
+    "version": { "type": "string" },
+    "summary": { "type": "string" },
+    "license": { "type": "string" },
+    "supports": {
+      "type": "array",
+      "items": { "type": "object" }
+    },
+    "controls": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "title": { "type": "string" },
+          "impact": { "type": "number" }
+        }
+      }
+    }
+  }
+}

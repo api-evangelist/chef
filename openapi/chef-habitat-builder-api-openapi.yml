@@ -1,0 +1,73 @@
+openapi: 3.1.0
+info:
+  title: Chef Habitat Builder API
+  description: >-
+    REST API for Chef Habitat Builder, the package management service for
+    Habitat application packages. Manages origins, packages, channels,
+    and deployment events.
+  version: '1.0'
+  contact:
+    name: Chef Software
+    url: https://www.chef.io/support
+externalDocs:
+  description: Habitat Builder Documentation
+  url: https://docs.habitat.sh/docs/using-builder/
+servers:
+  - url: https://bldr.habitat.sh/v1
+    description: Public Habitat Builder
+tags:
+  - name: Origins
+  - name: Packages
+  - name: Channels
+security:
+  - habitatToken: []
+paths:
+  /depot/origins/{origin}/pkgs:
+    get:
+      operationId: listOriginPackages
+      summary: List packages for an origin
+      tags: [Packages]
+      parameters:
+        - name: origin
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: Packages
+  /depot/pkgs/{origin}/{pkg}:
+    get:
+      operationId: getPackage
+      summary: Get a package
+      tags: [Packages]
+      parameters:
+        - name: origin
+          in: path
+          required: true
+          schema: { type: string }
+        - name: pkg
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: Package versions
+  /depot/channels/{origin}:
+    get:
+      operationId: listChannels
+      summary: List channels for an origin
+      tags: [Channels]
+      parameters:
+        - name: origin
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: Channels
+components:
+  securitySchemes:
+    habitatToken:
+      type: http
+      scheme: bearer
+      bearerFormat: HabitatBuilderToken

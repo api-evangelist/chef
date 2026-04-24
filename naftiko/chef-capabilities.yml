@@ -1,0 +1,102 @@
+name: chef-capabilities
+description: >-
+  Naftiko sandbox capabilities for the Chef (Progress Chef) automation
+  platform across Chef Infra Server, Chef Automate, and Habitat Builder.
+  These capabilities let agents inspect and manage nodes, cookbooks,
+  roles, compliance profiles, scan jobs, and Habitat packages.
+provider: chef
+version: '1.0'
+capabilities:
+  - id: chef.infra.nodes.list
+    name: List Chef nodes
+    description: List nodes managed by the Chef Infra Server.
+    operationId: listNodes
+    inputs: []
+    outputs:
+      - name: nodes
+        type: array
+    tags: [infra, nodes]
+  - id: chef.infra.nodes.get
+    name: Get Chef node
+    description: Get attributes for a specific node.
+    operationId: getNode
+    inputs:
+      - name: nodeName
+        type: string
+        required: true
+    outputs:
+      - name: node
+        type: object
+    tags: [infra, nodes]
+  - id: chef.infra.cookbooks.list
+    name: List cookbooks
+    description: List cookbooks available on the Chef Infra Server.
+    operationId: listCookbooks
+    inputs: []
+    outputs:
+      - name: cookbooks
+        type: array
+    tags: [infra, cookbooks]
+  - id: chef.infra.roles.create
+    name: Create role
+    description: Create a Chef role with run list and attributes.
+    operationId: createRole
+    inputs:
+      - name: role
+        type: object
+        required: true
+    outputs:
+      - name: role
+        type: object
+    tags: [infra, roles]
+  - id: chef.automate.compliance.profiles
+    name: List compliance profiles
+    description: List InSpec compliance profiles available in Chef Automate.
+    operationId: listComplianceProfiles
+    inputs: []
+    outputs:
+      - name: profiles
+        type: array
+    tags: [automate, compliance, inspec]
+  - id: chef.automate.scan.create
+    name: Create scan job
+    description: Create a compliance scan job targeting profiles and nodes.
+    operationId: createScanJob
+    inputs:
+      - name: name
+        type: string
+        required: true
+      - name: profiles
+        type: array
+        required: true
+      - name: nodes
+        type: array
+        required: false
+    outputs:
+      - name: job
+        type: object
+    tags: [automate, compliance, scans]
+  - id: chef.automate.reports.search
+    name: Search compliance reports
+    description: Search compliance reports filtered by node, profile, or status.
+    operationId: searchReports
+    inputs:
+      - name: filters
+        type: array
+        required: false
+    outputs:
+      - name: reports
+        type: array
+    tags: [automate, reporting]
+  - id: chef.habitat.packages
+    name: List Habitat packages
+    description: List Chef Habitat packages for an origin.
+    operationId: listOriginPackages
+    inputs:
+      - name: origin
+        type: string
+        required: true
+    outputs:
+      - name: packages
+        type: array
+    tags: [habitat, packages]

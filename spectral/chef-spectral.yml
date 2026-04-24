@@ -1,0 +1,39 @@
+extends:
+  - spectral:oas
+rules:
+  chef-https-only:
+    description: Chef APIs must use HTTPS.
+    severity: error
+    given: $.servers[*].url
+    then:
+      function: pattern
+      functionOptions:
+        match: '^https://'
+  chef-info-contact:
+    description: Definitions must declare contact information.
+    severity: error
+    given: $.info
+    then:
+      field: contact
+      function: truthy
+  chef-auth-declared:
+    description: Chef APIs must declare an authentication scheme (signed headers, API token, or bearer).
+    severity: error
+    given: $.components.securitySchemes
+    then:
+      function: truthy
+  chef-operation-tags:
+    description: Operations must declare at least one tag.
+    severity: warn
+    given: $.paths[*][get,post,put,delete,patch]
+    then:
+      field: tags
+      function: truthy
+  chef-organization-scoped:
+    description: Chef Infra Server endpoints should be scoped under /organizations/{org}.
+    severity: info
+    given: $.servers[?(@.description == 'Chef Infra Server (per-organization)')].url
+    then:
+      function: pattern
+      functionOptions:
+        match: '/organizations/'

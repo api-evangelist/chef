@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://docs.chef.io/schemas/node.json",
+  "title": "Chef Node",
+  "type": "object",
+  "required": ["name"],
+  "properties": {
+    "name": { "type": "string" },
+    "chef_environment": { "type": "string" },
+    "run_list": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "automatic": { "type": "object" },
+    "default": { "type": "object" },
+    "normal": { "type": "object" },
+    "override": { "type": "object" }
+  }
+}
