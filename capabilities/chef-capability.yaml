@@ -1,0 +1,193 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Chef Automate API
+  description: REST API for Chef Automate providing visibility into infrastructure convergence, compliance scans, and application
+    deployment. Includes endpoints for nodes, profiles, scans, and reports.
+  tags:
+  - Chef
+  - API
+  created: '2026-05-06'
+  modified: '2026-05-06'
+capability:
+  consumes:
+  - type: http
+    namespace: chef
+    baseUri: https://automate.example.com/api/v0
+    description: Chef Automate API HTTP API.
+    authentication:
+      type: apikey
+      in: header
+      name: api-token
+      value: '{{CHEF_TOKEN}}'
+    resources:
+    - name: compliance-profiles
+      path: /compliance/profiles
+      operations:
+      - name: listcomplianceprofiles
+        method: GET
+        description: List compliance profiles
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: compliance-scanner-jobs
+      path: /compliance/scanner/jobs
+      operations:
+      - name: createscanjob
+        method: POST
+        description: Create a compliance scan job
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: compliance-reporting-reports
+      path: /compliance/reporting/reports
+      operations:
+      - name: searchreports
+        method: POST
+        description: Search compliance reports
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: cfgmgmt-nodes
+      path: /cfgmgmt/nodes
+      operations:
+      - name: listmanagednodes
+        method: GET
+        description: List configuration management nodes
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: apis-iam-v2-users
+      path: /apis/iam/v2/users
+      operations:
+      - name: listiamusers
+        method: GET
+        description: List IAM users
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    port: 8080
+    namespace: chef-rest
+    description: REST adapter for Chef Automate API.
+    resources:
+    - path: /compliance/profiles
+      name: listcomplianceprofiles
+      operations:
+      - method: GET
+        name: listcomplianceprofiles
+        description: List compliance profiles
+        call: chef.listcomplianceprofiles
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /compliance/scanner/jobs
+      name: createscanjob
+      operations:
+      - method: POST
+        name: createscanjob
+        description: Create a compliance scan job
+        call: chef.createscanjob
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /compliance/reporting/reports
+      name: searchreports
+      operations:
+      - method: POST
+        name: searchreports
+        description: Search compliance reports
+        call: chef.searchreports
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /cfgmgmt/nodes
+      name: listmanagednodes
+      operations:
+      - method: GET
+        name: listmanagednodes
+        description: List configuration management nodes
+        call: chef.listmanagednodes
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /apis/iam/v2/users
+      name: listiamusers
+      operations:
+      - method: GET
+        name: listiamusers
+        description: List IAM users
+        call: chef.listiamusers
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9090
+    namespace: chef-mcp
+    transport: http
+    description: MCP adapter for Chef Automate API for AI agent use.
+    tools:
+    - name: listcomplianceprofiles
+      description: List compliance profiles
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chef.listcomplianceprofiles
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: createscanjob
+      description: Create a compliance scan job
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: chef.createscanjob
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: searchreports
+      description: Search compliance reports
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: chef.searchreports
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listmanagednodes
+      description: List configuration management nodes
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chef.listmanagednodes
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listiamusers
+      description: List IAM users
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chef.listiamusers
+      outputParameters:
+      - type: object
+        mapping: $.
+binds:
+- namespace: env
+  keys:
+    CHEF_TOKEN: CHEF_TOKEN
