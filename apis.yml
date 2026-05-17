@@ -124,7 +124,7 @@ common:
     url: https://training.chef.io/
   - type: Community
     url: https://community.chef.io/
-  - type: Status
+  - type: StatusPage
     url: https://status.chef.io/
   - type: TermsOfService
     url: https://www.chef.io/terms-of-service
