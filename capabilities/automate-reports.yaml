@@ -1,0 +1,82 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Chef Automate API — Reports
+  description: 'Chef Automate API — Reports. 1 operations. Lead operation: Search compliance reports. Self-contained Naftiko
+    capability covering one Chef business surface.'
+  tags:
+  - Chef
+  - Reports
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CHEF_API_KEY: CHEF_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: automate-reports
+    baseUri: https://{automate}/api/v0
+    description: Chef Automate API — Reports business capability. Self-contained, no shared references.
+    resources:
+    - name: compliance-reporting-reports
+      path: /compliance/reporting/reports
+      operations:
+      - name: searchreports
+        method: POST
+        description: Search compliance reports
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: apikey
+      key: api-token
+      value: '{{env.CHEF_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: automate-reports-rest
+    port: 8080
+    description: REST adapter for Chef Automate API — Reports. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/compliance/reporting/reports
+      name: compliance-reporting-reports
+      description: REST surface for compliance-reporting-reports.
+      operations:
+      - method: POST
+        name: searchreports
+        description: Search compliance reports
+        call: automate-reports.searchreports
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: automate-reports-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Chef Automate API — Reports. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: search-compliance-reports
+      description: Search compliance reports
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: automate-reports.searchreports
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

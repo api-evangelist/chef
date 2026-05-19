@@ -1,0 +1,79 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Chef Habitat Builder API — Channels
+  description: 'Chef Habitat Builder API — Channels. 1 operations. Lead operation: List channels for an origin. Self-contained
+    Naftiko capability covering one Chef business surface.'
+  tags:
+  - Chef
+  - Channels
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CHEF_API_KEY: CHEF_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: habitat-builder-channels
+    baseUri: https://bldr.habitat.sh/v1
+    description: Chef Habitat Builder API — Channels business capability. Self-contained, no shared references.
+    resources:
+    - name: depot-channels-origin
+      path: /depot/channels/{origin}
+      operations:
+      - name: listchannels
+        method: GET
+        description: List channels for an origin
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: origin
+          in: path
+          type: string
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.CHEF_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: habitat-builder-channels-rest
+    port: 8080
+    description: REST adapter for Chef Habitat Builder API — Channels. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/depot/channels/{origin}
+      name: depot-channels-origin
+      description: REST surface for depot-channels-origin.
+      operations:
+      - method: GET
+        name: listchannels
+        description: List channels for an origin
+        call: habitat-builder-channels.listchannels
+        with:
+          origin: rest.origin
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: habitat-builder-channels-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Chef Habitat Builder API — Channels. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: list-channels-origin
+      description: List channels for an origin
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: habitat-builder-channels.listchannels
+      with:
+        origin: tools.origin
+      outputParameters:
+      - type: object
+        mapping: $.

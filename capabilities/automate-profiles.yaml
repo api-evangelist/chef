@@ -1,0 +1,72 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Chef Automate API — Profiles
+  description: 'Chef Automate API — Profiles. 1 operations. Lead operation: List compliance profiles. Self-contained Naftiko
+    capability covering one Chef business surface.'
+  tags:
+  - Chef
+  - Profiles
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CHEF_API_KEY: CHEF_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: automate-profiles
+    baseUri: https://{automate}/api/v0
+    description: Chef Automate API — Profiles business capability. Self-contained, no shared references.
+    resources:
+    - name: compliance-profiles
+      path: /compliance/profiles
+      operations:
+      - name: listcomplianceprofiles
+        method: GET
+        description: List compliance profiles
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: api-token
+      value: '{{env.CHEF_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: automate-profiles-rest
+    port: 8080
+    description: REST adapter for Chef Automate API — Profiles. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/compliance/profiles
+      name: compliance-profiles
+      description: REST surface for compliance-profiles.
+      operations:
+      - method: GET
+        name: listcomplianceprofiles
+        description: List compliance profiles
+        call: automate-profiles.listcomplianceprofiles
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: automate-profiles-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Chef Automate API — Profiles. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: list-compliance-profiles
+      description: List compliance profiles
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: automate-profiles.listcomplianceprofiles
+      outputParameters:
+      - type: object
+        mapping: $.

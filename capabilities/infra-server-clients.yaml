@@ -1,0 +1,72 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Chef Infra Server API — Clients
+  description: 'Chef Infra Server API — Clients. 1 operations. Lead operation: List API clients. Self-contained Naftiko capability
+    covering one Chef business surface.'
+  tags:
+  - Chef
+  - Clients
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CHEF_API_KEY: CHEF_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: infra-server-clients
+    baseUri: https://{server}/organizations/{org}
+    description: Chef Infra Server API — Clients business capability. Self-contained, no shared references.
+    resources:
+    - name: clients
+      path: /clients
+      operations:
+      - name: listclients
+        method: GET
+        description: List API clients
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: X-Ops-Authorization
+      value: '{{env.CHEF_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: infra-server-clients-rest
+    port: 8080
+    description: REST adapter for Chef Infra Server API — Clients. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/clients
+      name: clients
+      description: REST surface for clients.
+      operations:
+      - method: GET
+        name: listclients
+        description: List API clients
+        call: infra-server-clients.listclients
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: infra-server-clients-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Chef Infra Server API — Clients. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: list-api-clients
+      description: List API clients
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: infra-server-clients.listclients
+      outputParameters:
+      - type: object
+        mapping: $.

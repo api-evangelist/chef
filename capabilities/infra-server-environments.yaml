@@ -1,0 +1,72 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Chef Infra Server API — Environments
+  description: 'Chef Infra Server API — Environments. 1 operations. Lead operation: List environments. Self-contained Naftiko
+    capability covering one Chef business surface.'
+  tags:
+  - Chef
+  - Environments
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CHEF_API_KEY: CHEF_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: infra-server-environments
+    baseUri: https://{server}/organizations/{org}
+    description: Chef Infra Server API — Environments business capability. Self-contained, no shared references.
+    resources:
+    - name: environments
+      path: /environments
+      operations:
+      - name: listenvironments
+        method: GET
+        description: List environments
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: X-Ops-Authorization
+      value: '{{env.CHEF_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: infra-server-environments-rest
+    port: 8080
+    description: REST adapter for Chef Infra Server API — Environments. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/environments
+      name: environments
+      description: REST surface for environments.
+      operations:
+      - method: GET
+        name: listenvironments
+        description: List environments
+        call: infra-server-environments.listenvironments
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: infra-server-environments-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Chef Infra Server API — Environments. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: list-environments
+      description: List environments
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: infra-server-environments.listenvironments
+      outputParameters:
+      - type: object
+        mapping: $.
