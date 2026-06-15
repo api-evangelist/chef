@@ -1,0 +1,275 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Chef Infra Server API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Ops-Authorization",
+      "value": "{{X-Ops-Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Nodes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List nodes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}/organizations/{org}/nodes"
+          },
+          "docs": "List nodes"
+        },
+        {
+          "info": {
+            "name": "Create a node",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{server}/organizations/{org}/nodes",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a node"
+        },
+        {
+          "info": {
+            "name": "Get a node",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}/organizations/{org}/nodes/:nodeName",
+            "params": [
+              {
+                "name": "nodeName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a node"
+        },
+        {
+          "info": {
+            "name": "Update a node",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{server}/organizations/{org}/nodes/:nodeName",
+            "params": [
+              {
+                "name": "nodeName",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a node"
+        },
+        {
+          "info": {
+            "name": "Delete a node",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{server}/organizations/{org}/nodes/:nodeName",
+            "params": [
+              {
+                "name": "nodeName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a node"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Cookbooks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List cookbooks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}/organizations/{org}/cookbooks"
+          },
+          "docs": "List cookbooks"
+        },
+        {
+          "info": {
+            "name": "Get cookbook versions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}/organizations/{org}/cookbooks/:cookbookName",
+            "params": [
+              {
+                "name": "cookbookName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get cookbook versions"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Roles",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List roles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}/organizations/{org}/roles"
+          },
+          "docs": "List roles"
+        },
+        {
+          "info": {
+            "name": "Create a role",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{server}/organizations/{org}/roles",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a role"
+        },
+        {
+          "info": {
+            "name": "Get a role",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}/organizations/{org}/roles/:roleName",
+            "params": [
+              {
+                "name": "roleName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a role"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Environments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List environments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}/organizations/{org}/environments"
+          },
+          "docs": "List environments"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Data Bags",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List data bags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}/organizations/{org}/data"
+          },
+          "docs": "List data bags"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Clients",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List API clients",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}/organizations/{org}/clients"
+          },
+          "docs": "List API clients"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}/organizations/{org}/users"
+          },
+          "docs": "List users"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,121 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Chef Automate API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "api-token",
+      "value": "{{api-token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Profiles",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List compliance profiles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{automate}/api/v0/compliance/profiles"
+          },
+          "docs": "List compliance profiles"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Scans",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a compliance scan job",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{automate}/api/v0/compliance/scanner/jobs",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a compliance scan job"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Reports",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search compliance reports",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{automate}/api/v0/compliance/reporting/reports",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Search compliance reports"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Nodes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List configuration management nodes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{automate}/api/v0/cfgmgmt/nodes"
+          },
+          "docs": "List configuration management nodes"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "IAM",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List IAM users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{automate}/api/v0/apis/iam/v2/users"
+          },
+          "docs": "List IAM users"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

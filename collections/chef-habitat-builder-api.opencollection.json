@@ -1,0 +1,91 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Chef Habitat Builder API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Packages",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List packages for an origin",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://bldr.habitat.sh/v1/depot/origins/:origin/pkgs",
+            "params": [
+              {
+                "name": "origin",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List packages for an origin"
+        },
+        {
+          "info": {
+            "name": "Get a package",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://bldr.habitat.sh/v1/depot/pkgs/:origin/:pkg",
+            "params": [
+              {
+                "name": "origin",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "pkg",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a package"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Channels",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List channels for an origin",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://bldr.habitat.sh/v1/depot/channels/:origin",
+            "params": [
+              {
+                "name": "origin",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List channels for an origin"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
