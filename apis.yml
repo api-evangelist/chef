@@ -5,7 +5,7 @@ description: >-
   REST APIs for the Infra Server (managing nodes, cookbooks, roles, environments, and data bags), Chef Automate
   (visibility into convergence, compliance, and deployment), Habitat Builder (application packaging and delivery), and
   InSpec (a language and runner for security and compliance testing).
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 url: https://raw.githubusercontent.com/api-evangelist/chef/refs/heads/main/apis.yml
 type: Index
 access: 3rd-Party
@@ -29,7 +29,7 @@ apis:
     description: >-
       REST API for managing nodes, cookbooks, roles, environments, data bags, clients, and users on the Chef Infra
       Server. Authentication uses Chef signed-header authentication with an RSA client key.
-    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://docs.chef.io/server/api_chef_server/
     baseURL: https://chef.example.com/organizations/example
     tags:
@@ -47,7 +47,7 @@ apis:
     description: >-
       REST API for Chef Automate providing visibility into infrastructure convergence, compliance scans, and application
       deployment. Includes compliance profiles, scan jobs, reports, IAM, and configuration management endpoints.
-    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://docs.chef.io/automate/api/
     baseURL: https://automate.example.com/api/v0
     tags:
@@ -68,7 +68,7 @@ apis:
     description: >-
       REST API for Chef Habitat Builder, the package management service for Habitat application packages. Manages
       origins, packages, channels, and deployment events.
-    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://docs.habitat.sh/docs/using-builder/
     baseURL: https://bldr.habitat.sh/v1
     tags:
@@ -87,7 +87,7 @@ apis:
     description: >-
       InSpec is an open-source language and runner for security and compliance testing. It is consumed via the InSpec
       CLI and Ruby DSL, and surfaced inside Chef Automate as compliance profiles, scan jobs, and reports.
-    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://docs.chef.io/inspec/
     tags:
       - Compliance
