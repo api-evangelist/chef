@@ -9,6 +9,13 @@
       "method": "none"
     },
     {
+      "source": "https://docs.chef.io/index.xml",
+      "feed_url": "https://docs.chef.io/index.xml",
+      "title": "",
+      "saved": 0,
+      "method": "feed"
+    },
+    {
       "source": "https://docs.chef.io/",
       "feed_url": "https://docs.chef.io/index.xml",
       "title": "",
@@ -16,6 +23,6 @@
       "method": "discovered"
     }
   ],
-  "fetched": "2026-06-14T20:42:17Z",
+  "fetched": "2026-06-27T12:03:07Z",
   "post_count": 1
 }
