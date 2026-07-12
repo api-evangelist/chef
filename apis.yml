@@ -99,6 +99,14 @@ apis:
       - type: GitHub
         url: https://github.com/inspec/inspec
 common:
+  - type: TrustCenter
+    url: security/chef-trust-center.yml
+  - type: VulnerabilityDisclosure
+    url: security/chef-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/chef-domain-security.yml
+  - type: Authentication
+    url: authentication/chef-authentication.yml
   - type: LinkedIn
     url: https://www.linkedin.com/company/chef-software
   - type: Website

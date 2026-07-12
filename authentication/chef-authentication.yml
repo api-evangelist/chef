@@ -1,0 +1,31 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/chef-automate-api-openapi.yml, openapi/chef-habitat-builder-api-openapi.yml,
+  openapi/chef-infra-server-api-openapi.yml
+summary:
+  types:
+  - apiKey
+  - http
+  api_key_in:
+  - header
+schemes:
+- name: apiToken
+  type: apiKey
+  in: header
+  parameter: api-token
+  description: API token issued through the Chef Automate UI or admin API.
+  sources:
+  - openapi/chef-automate-api-openapi.yml
+- name: habitatToken
+  type: http
+  scheme: bearer
+  bearerFormat: HabitatBuilderToken
+  sources:
+  - openapi/chef-habitat-builder-api-openapi.yml
+- name: chefSignedAuth
+  type: apiKey
+  in: header
+  parameter: X-Ops-Authorization
+  description: Chef signed-header authentication using an RSA key associated with a client.
+  sources:
+  - openapi/chef-infra-server-api-openapi.yml

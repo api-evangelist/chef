@@ -1,0 +1,12 @@
+generated: '2026-07-11'
+method: searched
+probe: true
+source: https://www.chef.io/products/chef-compliance
+url: https://www.chef.io/products/chef-compliance
+certifications:
+- HIPAA
+evidence:
+- source: https://www.chef.io/products/chef-compliance
+  keywords:
+  - hipaa
+  - trust center
