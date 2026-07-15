@@ -99,6 +99,8 @@ apis:
       - type: GitHub
         url: https://github.com/inspec/inspec
 common:
+  - type: AgenticAccess
+    url: agentic-access/chef-agentic-access.yml
   - type: TrustCenter
     url: security/chef-trust-center.yml
   - type: VulnerabilityDisclosure
