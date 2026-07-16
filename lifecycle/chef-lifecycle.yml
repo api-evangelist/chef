@@ -1,0 +1,46 @@
+generated: '2026-06-20'
+method: searched
+source: https://github.com/chef/chef/blob/main/docs/dev/policy/release_and_support_schedule.md
+docs:
+  - https://docs.chef.io/versions/
+  - https://docs.chef.io/platforms/
+support_model:
+  strategy: N-1
+  description: >-
+    Chef supports the current major version release plus the previous major
+    version release. Each major version is supported for roughly one year in
+    the Generally Available (GA) stage, then roughly one year in a Deprecated
+    stage (critical bug and security fixes only) before reaching End of Life.
+  stages:
+    - stage: Generally Available
+      support: Active development, regular releases, new features and bug fixes.
+    - stage: Deprecated
+      support: Critical bug and security fixes only, released as needed (off the normal cadence).
+    - stage: End of Life
+      support: No further releases; documentation archived.
+versioning:
+  scheme: semver-per-product
+  note: >-
+    Each Chef product versions independently (SemVer, patch auto-incremented by
+    CI). The Automate and Habitat Builder REST APIs are versioned in the URI
+    path (Automate /api/v0 and /apis/iam/v2; Habitat Builder /v1).
+current_versions:
+  - product: Chef Infra Client
+    current_major: '19'
+    previous_major: '18'
+  - product: Chef InSpec
+    current_major: '7'
+    note: N-1 strategy; InSpec 5 reached EOL 2025-10-16.
+  - product: Chef Workstation
+    current_major: '26'
+  - product: Chef Habitat
+    current_major: '2'
+status_page: https://status.chef.io/
+deprecation:
+  sunset_header: false
+  deprecation_header: false
+  note: >-
+    Deprecation is managed at the product-release level (release schedule and
+    endoflife.date), not via per-operation RFC 8594 Sunset/Deprecation HTTP
+    headers in the REST APIs.
+deprecated_operations: []

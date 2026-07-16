@@ -1,0 +1,45 @@
+generated: '2026-06-20'
+method: searched
+source:
+  - https://github.com/chef/chef/blob/main/CHANGELOG.md
+  - https://github.com/inspec/inspec/blob/main/CHANGELOG.md
+docs:
+  - https://docs.chef.io/release_notes/client/
+  - https://docs.chef.io/release_notes/inspec/
+scheme: semver-per-product
+note: >-
+  Each Chef product maintains its own dated CHANGELOG (PR-level detail) and a
+  curated Release Notes page. Patch versions are auto-incremented per merged PR
+  by Chef's Expeditor tooling, so version numbers advance rapidly. Recent
+  window only — the live CHANGELOGs are the source of truth.
+products:
+  - product: Chef Infra Client
+    changelog: https://github.com/chef/chef/blob/main/CHANGELOG.md
+    current_version: 19.3.59
+    entries:
+      - version: 19.3.59
+        date: '2026-07-15'
+        breaking: false
+        highlights: Dependency/security updates following a Grype scan report.
+      - version: 19.3.39
+        date: '2026-07'
+        breaking: false
+        highlights: Bump bundled InSpec to 7.1.7; aarch64-darwin Habitat package build.
+      - version: '19.0'
+        date: '2026'
+        breaking: true
+        highlights: >-
+          Chef Infra Client 19 is built entirely on Chef Habitat; Omnibus
+          builds are no longer provided.
+  - product: Chef InSpec
+    changelog: https://github.com/inspec/inspec/blob/main/CHANGELOG.md
+    current_version: 7.1.16
+    entries:
+      - version: 7.1.16
+        date: '2026-07-16'
+        breaking: false
+        highlights: aarch64-darwin Habitat package + CI pipeline; initial AI PoC work.
+      - version: 7.1.7
+        date: '2026-06'
+        breaking: false
+        highlights: June 2026 supported release (N-1 current line).

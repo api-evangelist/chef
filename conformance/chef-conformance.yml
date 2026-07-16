@@ -1,0 +1,31 @@
+generated: '2026-06-20'
+method: derived
+source: openapi/chef-infra-server-api-openapi.yml, openapi/chef-automate-api-openapi.yml, openapi/chef-habitat-builder-api-openapi.yml
+standards:
+  - id: oauth2
+    conforms: false
+    evidence: No oauth2 securitySchemes; Chef uses signed-header, API-token, and bearer-token auth.
+  - id: oidc
+    conforms: false
+    evidence: No OpenID Connect discovery or securityScheme. LDAP/SAML SSO is configured at the Automate/Infra Server layer, not exposed as an API auth scheme.
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: No application/problem+json responses declared in the OpenAPI definitions.
+  - id: json-api
+    conforms: false
+    evidence: Responses are plain JSON, not JSON:API media type.
+  - id: rest-json
+    conforms: true
+    evidence: All three APIs are JSON-over-HTTPS REST with resource-oriented paths.
+  - id: pagination
+    conforms: true
+    evidence: Chef Automate report search accepts page/per_page parameters (openapi searchReports requestBody).
+  - id: rfc7231-signed-auth
+    conforms: true
+    evidence: Chef Infra Server uses RSA signed-header authentication (X-Ops-Authorization) per the Chef authentication protocol.
+  - id: uri-path-versioning
+    conforms: true
+    evidence: Automate (/api/v0, /apis/iam/v2) and Habitat Builder (/v1) version in the URI path.
+  - id: cis-benchmarks
+    conforms: true
+    evidence: Chef InSpec ships and executes CIS/DISA STIG compliance profiles as the core compliance product.

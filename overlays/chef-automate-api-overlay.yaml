@@ -1,0 +1,22 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Chef Automate API
+  version: 1.0.0
+extends: openapi/chef-automate-api-openapi.yml
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-provider: chef
+      x-apievangelist-api: chef-automate-api
+      x-apievangelist-auth: api-token
+      x-apievangelist-artifacts:
+        authentication: authentication/chef-authentication.yml
+        conventions: conventions/chef-conventions.yml
+        data-model: data-model/chef-data-model.yml
+        lifecycle: lifecycle/chef-lifecycle.yml
+  - target: $.info
+    update:
+      x-apievangelist-categories:
+        - Compliance
+        - Observability
+        - DevSecOps

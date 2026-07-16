@@ -1,0 +1,105 @@
+generated: '2026-06-20'
+method: derived
+source: openapi/chef-infra-server-api-openapi.yml, openapi/chef-automate-api-openapi.yml, openapi/chef-habitat-builder-api-openapi.yml
+docs:
+  - https://docs.chef.io/server/api_chef_server/
+  - https://docs.chef.io/automate/api/
+  - https://docs.habitat.sh/docs/using-builder/
+notes: >-
+  Entity graph derived from the OpenAPI path structure and Chef's documented
+  object model. Chef spans three products; entities are grouped by API.
+entities:
+  # --- Chef Infra Server ---
+  - name: Node
+    api: Chef Infra Server API
+    id: nodeName
+    path: /nodes/{nodeName}
+    relationships:
+      - type: belongs_to
+        target: Environment
+        via: chef_environment
+      - type: has_many
+        target: Role
+        via: run_list
+  - name: Cookbook
+    api: Chef Infra Server API
+    id: cookbookName
+    path: /cookbooks/{cookbookName}
+  - name: Role
+    api: Chef Infra Server API
+    id: roleName
+    path: /roles/{roleName}
+    relationships:
+      - type: has_many
+        target: Cookbook
+        via: run_list
+  - name: Environment
+    api: Chef Infra Server API
+    path: /environments
+    relationships:
+      - type: has_many
+        target: Node
+        via: chef_environment
+  - name: DataBag
+    api: Chef Infra Server API
+    path: /data
+  - name: Client
+    api: Chef Infra Server API
+    path: /clients
+  - name: User
+    api: Chef Infra Server API
+    path: /users
+  # --- Chef Automate ---
+  - name: ComplianceProfile
+    api: Chef Automate API
+    path: /compliance/profiles
+  - name: ScanJob
+    api: Chef Automate API
+    path: /compliance/scanner/jobs
+    relationships:
+      - type: has_many
+        target: ComplianceProfile
+        via: profiles
+      - type: has_many
+        target: ManagedNode
+        via: nodes
+  - name: Report
+    api: Chef Automate API
+    path: /compliance/reporting/reports
+    relationships:
+      - type: belongs_to
+        target: ScanJob
+        via: job_id
+  - name: ManagedNode
+    api: Chef Automate API
+    path: /cfgmgmt/nodes
+  - name: IamUser
+    api: Chef Automate API
+    path: /apis/iam/v2/users
+  # --- Habitat Builder ---
+  - name: Origin
+    api: Chef Habitat Builder API
+    id: origin
+    path: /depot/origins/{origin}/pkgs
+    relationships:
+      - type: has_many
+        target: Package
+        via: origin
+      - type: has_many
+        target: Channel
+        via: origin
+  - name: Package
+    api: Chef Habitat Builder API
+    id: pkg
+    path: /depot/pkgs/{origin}/{pkg}
+    relationships:
+      - type: belongs_to
+        target: Origin
+        via: origin
+  - name: Channel
+    api: Chef Habitat Builder API
+    path: /depot/channels/{origin}
+    relationships:
+      - type: belongs_to
+        target: Origin
+        via: origin

@@ -1,0 +1,79 @@
+generated: '2026-06-20'
+method: derived
+status: candidate
+source: openapi/chef-infra-server-api-openapi.yml, openapi/chef-automate-api-openapi.yml, openapi/chef-habitat-builder-api-openapi.yml
+notes: >-
+  Progress Chef publishes no official hosted/remote MCP server. Community
+  wrappers exist (e.g. mcpmarket listings) but are not first-party. The tool
+  list below is a candidate surface derived one-to-one from the OpenAPI
+  operations across the three Chef REST APIs.
+server:
+  name: chef
+  transport: stdio
+tools:
+  - name: list_nodes
+    description: List nodes on the Chef Infra Server.
+    source_operation: openapi/chef-infra-server-api-openapi.yml#listNodes
+  - name: create_node
+    description: Create a node.
+    source_operation: openapi/chef-infra-server-api-openapi.yml#createNode
+  - name: get_node
+    description: Get a node.
+    source_operation: openapi/chef-infra-server-api-openapi.yml#getNode
+  - name: update_node
+    description: Update a node.
+    source_operation: openapi/chef-infra-server-api-openapi.yml#updateNode
+  - name: delete_node
+    description: Delete a node.
+    source_operation: openapi/chef-infra-server-api-openapi.yml#deleteNode
+  - name: list_cookbooks
+    description: List cookbooks.
+    source_operation: openapi/chef-infra-server-api-openapi.yml#listCookbooks
+  - name: get_cookbook
+    description: Get cookbook versions.
+    source_operation: openapi/chef-infra-server-api-openapi.yml#getCookbook
+  - name: list_roles
+    description: List roles.
+    source_operation: openapi/chef-infra-server-api-openapi.yml#listRoles
+  - name: create_role
+    description: Create a role.
+    source_operation: openapi/chef-infra-server-api-openapi.yml#createRole
+  - name: get_role
+    description: Get a role.
+    source_operation: openapi/chef-infra-server-api-openapi.yml#getRole
+  - name: list_environments
+    description: List environments.
+    source_operation: openapi/chef-infra-server-api-openapi.yml#listEnvironments
+  - name: list_data_bags
+    description: List data bags.
+    source_operation: openapi/chef-infra-server-api-openapi.yml#listDataBags
+  - name: list_clients
+    description: List API clients.
+    source_operation: openapi/chef-infra-server-api-openapi.yml#listClients
+  - name: list_users
+    description: List users.
+    source_operation: openapi/chef-infra-server-api-openapi.yml#listUsers
+  - name: list_compliance_profiles
+    description: List Chef Automate compliance profiles.
+    source_operation: openapi/chef-automate-api-openapi.yml#listComplianceProfiles
+  - name: create_scan_job
+    description: Create a compliance scan job.
+    source_operation: openapi/chef-automate-api-openapi.yml#createScanJob
+  - name: search_reports
+    description: Search compliance reports.
+    source_operation: openapi/chef-automate-api-openapi.yml#searchReports
+  - name: list_managed_nodes
+    description: List configuration management nodes in Automate.
+    source_operation: openapi/chef-automate-api-openapi.yml#listManagedNodes
+  - name: list_iam_users
+    description: List Automate IAM users.
+    source_operation: openapi/chef-automate-api-openapi.yml#listIamUsers
+  - name: list_origin_packages
+    description: List Habitat Builder packages for an origin.
+    source_operation: openapi/chef-habitat-builder-api-openapi.yml#listOriginPackages
+  - name: get_package
+    description: Get a Habitat Builder package.
+    source_operation: openapi/chef-habitat-builder-api-openapi.yml#getPackage
+  - name: list_channels
+    description: List Habitat Builder channels for an origin.
+    source_operation: openapi/chef-habitat-builder-api-openapi.yml#listChannels

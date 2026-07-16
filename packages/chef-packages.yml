@@ -1,0 +1,59 @@
+generated: '2026-06-20'
+method: searched
+source: https://rubygems.org
+notes: >-
+  Chef's first-party client tooling ships primarily as Ruby gems on RubyGems.
+  Habitat's `hab` CLI is a Rust binary distributed via the Habitat install
+  script / Habitat packages (chef/hab), not a gem, so it is catalogued under
+  cli/ rather than here. The `habitat` gem on RubyGems is an unrelated
+  third-party project and is intentionally excluded.
+packages:
+  - language: ruby
+    registry: rubygems
+    name: chef
+    url: https://rubygems.org/gems/chef
+    install: gem install chef
+    version: 19.3.15
+    official: true
+    description: Chef Infra Client — the agent that configures nodes from cookbooks.
+  - language: ruby
+    registry: rubygems
+    name: chef-cli
+    url: https://rubygems.org/gems/chef-cli
+    install: gem install chef-cli
+    version: 6.1.34
+    official: true
+    description: The `chef` command line tool bundled in Chef Workstation.
+  - language: ruby
+    registry: rubygems
+    name: knife
+    url: https://rubygems.org/gems/knife
+    install: gem install knife
+    version: 19.0.134
+    official: true
+    description: Knife CLI for interacting with the Chef Infra Server.
+  - language: ruby
+    registry: rubygems
+    name: inspec
+    url: https://rubygems.org/gems/inspec
+    install: gem install inspec
+    version: 7.1.7
+    official: true
+    source_repo: https://github.com/inspec/inspec
+    description: Chef InSpec auditing and compliance testing framework + CLI.
+  - language: ruby
+    registry: rubygems
+    name: chef-utils
+    url: https://rubygems.org/gems/chef-utils
+    install: gem install chef-utils
+    version: 19.3.15
+    official: true
+    description: Shared helper library used across Chef Infra Client.
+  - language: ruby
+    registry: rubygems
+    name: chef-config
+    url: https://rubygems.org/gems/chef-config
+    install: gem install chef-config
+    version: 19.3.15
+    official: true
+    description: Configuration loading library shared across Chef Infra tooling.

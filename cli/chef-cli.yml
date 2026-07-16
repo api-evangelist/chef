@@ -1,0 +1,91 @@
+generated: '2026-06-20'
+method: searched
+source: https://docs.chef.io/workstation/
+notes: >-
+  Chef ships several first-party command line tools. Binaries are catalogued
+  in packages/ (gems) — this artifact captures their command surface.
+clis:
+  - name: chef
+    binary: chef
+    package: chef-cli
+    docs: https://docs.chef.io/workstation/getting_started/
+    install:
+      - Chef Workstation installer (bundles chef, knife, inspec, test-kitchen)
+      - gem install chef-cli
+    description: Top-level Chef Workstation CLI for authoring and managing cookbooks and policies.
+    command_groups:
+      - group: generate
+        summary: Scaffold cookbooks, resources, recipes, attributes, and repos.
+      - group: install / update
+        summary: Install and update Policyfile-locked cookbook dependencies.
+      - group: export
+        summary: Export a policy and its cookbooks for distribution.
+      - group: env
+        summary: Report on the embedded Ruby environment.
+  - name: knife
+    binary: knife
+    package: knife
+    docs: https://docs.chef.io/workstation/knife/
+    install:
+      - Bundled in Chef Workstation
+      - gem install knife
+    description: CLI for interacting with the Chef Infra Server (nodes, cookbooks, roles, data bags, clients, users).
+    command_groups:
+      - group: node
+        summary: Create, list, show, edit, and delete nodes.
+      - group: cookbook / cookbook upload
+        summary: Upload, download, list, and delete cookbooks on the Infra Server.
+      - group: role
+        summary: Manage roles.
+      - group: environment
+        summary: Manage environments.
+      - group: data bag
+        summary: Manage data bags and encrypted data bag items.
+      - group: client / user
+        summary: Manage API clients and users.
+      - group: ssl
+        summary: Fetch and verify Chef Infra Server certificates.
+      - group: bootstrap
+        summary: Install Chef Infra Client on a remote node and register it.
+  - name: inspec
+    binary: inspec
+    package: inspec
+    docs: https://docs.chef.io/inspec/cli/
+    install:
+      - hab pkg install chef/inspec --binlink inspec
+      - gem install inspec
+      - Bundled in Chef Workstation
+    description: CLI for authoring and running InSpec compliance and security profiles.
+    command_groups:
+      - group: exec
+        summary: Run an InSpec profile against a target (local, ssh, winrm, docker, cloud).
+      - group: check
+        summary: Verify a profile is valid.
+      - group: archive
+        summary: Package a profile into a tar/zip artifact.
+      - group: shell
+        summary: Interactive InSpec debugging shell.
+      - group: detect
+        summary: Detect the target platform.
+      - group: vendor
+        summary: Vendor a profile's dependencies.
+      - group: json / docs
+        summary: Emit machine-readable profile metadata and documentation.
+  - name: hab
+    binary: hab
+    package: chef/hab (Habitat package; Rust binary, not a gem)
+    docs: https://docs.chef.io/habitat/habitat_cli/
+    install:
+      - curl https://raw.githubusercontent.com/habitat-sh/habitat/main/components/hab/install.sh | sudo bash
+    description: Chef Habitat CLI for building, packaging, and running Habitat application packages, and interacting with Builder.
+    command_groups:
+      - group: pkg
+        summary: Build, install, upload, and manage Habitat packages.
+      - group: origin
+        summary: Manage Builder origins and origin keys.
+      - group: bldr
+        summary: Interact with Chef Habitat Builder (jobs, channels).
+      - group: svc / sup
+        summary: Load and manage services under the Habitat Supervisor.
+      - group: studio
+        summary: Enter a clean-room build studio.

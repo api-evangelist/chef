@@ -1,0 +1,56 @@
+generated: '2026-06-20'
+method: derived
+source: openapi/chef-infra-server-api-openapi.yml, openapi/chef-automate-api-openapi.yml, openapi/chef-habitat-builder-api-openapi.yml
+docs:
+  - https://docs.chef.io/server/api_chef_server/
+  - https://docs.chef.io/automate/api/
+notes: >-
+  Cross-cutting request/response semantics for Chef's three REST APIs. Chef
+  runs as multiple distinct products with different auth and hosting models,
+  so conventions are recorded per API where they diverge.
+authentication:
+  style: per-product
+  schemes:
+    - api: Chef Infra Server API
+      scheme: Chef signed-header authentication (RSA client key)
+      header: X-Ops-Authorization
+      artifact: authentication/chef-authentication.yml
+    - api: Chef Automate API
+      scheme: API token
+      header: api-token
+    - api: Chef Habitat Builder API
+      scheme: Bearer token
+      header: Authorization
+media_type:
+  request: application/json
+  response: application/json
+versioning:
+  style: uri-path
+  detail:
+    - Chef Automate: /api/v0 and /apis/iam/v2
+    - Chef Habitat Builder: /v1
+    - Chef Infra Server: unversioned per-organization path (/organizations/{org})
+  lifecycle: lifecycle/chef-lifecycle.yml
+pagination:
+  style: page-based
+  detail: >-
+    Chef Automate compliance report search accepts `page` and `per_page` in the
+    request body (openapi searchReports). Infra Server list endpoints return
+    full collections without cursor pagination.
+  params: [page, per_page]
+idempotency:
+  supported: false
+  detail: >-
+    No idempotency-key header is documented. Writes use standard REST verbs
+    (PUT for node updates is naturally idempotent; POST create is not).
+request_tracing:
+  request_id_header: null
+  detail: No documented request-id / correlation-id header convention.
+error_envelope:
+  format: plain-json
+  detail: >-
+    Errors are returned as JSON with product-specific shapes; no RFC 9457
+    application/problem+json envelope is declared. See conformance/chef-conformance.yml.
+rate_limiting:
+  detail: See rate-limits/chef-rate-limits.yml. Self-hosted Infra Server and Automate rate limits are deployment-dependent; Habitat Builder (public) applies service-side limits.
+  artifact: rate-limits/chef-rate-limits.yml

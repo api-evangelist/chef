@@ -1,0 +1,22 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Chef Habitat Builder API
+  version: 1.0.0
+extends: openapi/chef-habitat-builder-api-openapi.yml
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-provider: chef
+      x-apievangelist-api: chef-habitat-builder-api
+      x-apievangelist-auth: bearer
+      x-apievangelist-artifacts:
+        authentication: authentication/chef-authentication.yml
+        conventions: conventions/chef-conventions.yml
+        data-model: data-model/chef-data-model.yml
+        lifecycle: lifecycle/chef-lifecycle.yml
+  - target: $.info
+    update:
+      x-apievangelist-categories:
+        - Application Packaging
+        - Deployment
+        - Habitat

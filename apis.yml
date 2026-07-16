@@ -21,7 +21,7 @@ tags:
   - Infrastructure as Code
   - InSpec
 created: '2024-01-15'
-modified: '2026-05-19'
+modified: '2026-06-20'
 specificationVersion: '0.20'
 apis:
   - aid: chef:chef-infra-server-api
@@ -42,6 +42,8 @@ apis:
         url: https://docs.chef.io/server/server_security/
       - type: OpenAPI
         url: openapi/chef-infra-server-api-openapi.yml
+      - type: Overlay
+        url: overlays/chef-infra-server-api-overlay.yaml
   - aid: chef:chef-automate-api
     name: Chef Automate API
     description: >-
@@ -63,6 +65,8 @@ apis:
         url: https://docs.chef.io/automate/api_tokens/
       - type: OpenAPI
         url: openapi/chef-automate-api-openapi.yml
+      - type: Overlay
+        url: overlays/chef-automate-api-overlay.yaml
   - aid: chef:chef-habitat-builder-api
     name: Chef Habitat Builder API
     description: >-
@@ -82,6 +86,8 @@ apis:
         url: https://docs.habitat.sh/docs/using-builder/
       - type: OpenAPI
         url: openapi/chef-habitat-builder-api-openapi.yml
+      - type: Overlay
+        url: overlays/chef-habitat-builder-api-overlay.yaml
   - aid: chef:chef-inspec
     name: Chef InSpec
     description: >-
@@ -99,6 +105,26 @@ apis:
       - type: GitHub
         url: https://github.com/inspec/inspec
 common:
+  - type: Packages
+    url: packages/chef-packages.yml
+  - type: CLI
+    url: cli/chef-cli.yml
+  - type: WellKnown
+    url: well-known/chef-well-known.yml
+  - type: MCPServer
+    url: mcp/chef-mcp.yml
+  - type: LLMsTxt
+    url: llms/chef-llms.txt
+  - type: Conformance
+    url: conformance/chef-conformance.yml
+  - type: Lifecycle
+    url: lifecycle/chef-lifecycle.yml
+  - type: ChangeLog
+    url: changelog/chef-changelog.yml
+  - type: Conventions
+    url: conventions/chef-conventions.yml
+  - type: DataModel
+    url: data-model/chef-data-model.yml
   - type: AgenticAccess
     url: agentic-access/chef-agentic-access.yml
   - type: TrustCenter

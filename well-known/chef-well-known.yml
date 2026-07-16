@@ -1,0 +1,28 @@
+generated: '2026-06-20'
+method: searched
+source: live probes of /.well-known/ on Chef base hosts
+notes: >-
+  No /.well-known/ discovery documents are published on any Chef host. The
+  Chef Infra Server and Automate are self-hosted (per-org / customer domains),
+  so there is no canonical public authorization-server surface to probe.
+hosts:
+  - host: https://www.chef.io
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /security.txt
+        status: 404
+  - host: https://docs.chef.io
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /llms.txt
+        status: 404
+      - path: /llms-full.txt
+        status: 404
+  - host: https://bldr.habitat.sh
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
