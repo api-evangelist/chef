@@ -1,0 +1,133 @@
+arazzo: 1.0.1
+info:
+  title: Chef Define a Role and Assign It to a Node
+  summary: Create a role, read it back, then place it in a node's run list.
+  description: >-
+    Roles are how Chef expresses a reusable server persona, and this is the flow
+    that puts one into service. The workflow creates the role with its run list
+    and default attributes, reads it back to confirm the server expanded and
+    stored it, then reads the target node and writes the role into that node's
+    run list. Doing the read-back before touching the node matters: a node run
+    list that references a role the server does not have fails at converge time
+    rather than at write time. Each step spells out its request inline so the
+    flow can be read and executed without opening the underlying OpenAPI
+    description.
+  version: 1.0.0
+sourceDescriptions:
+- name: chefInfraServerApi
+  url: ../openapi/chef-infra-server-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: assign-role-to-node
+  summary: Create a Chef role and apply it to a node's run list.
+  description: >-
+    Creates the role, verifies it exists on the server, then amends the target
+    node's run list to include the role.
+  inputs:
+    type: object
+    required:
+    - roleName
+    - nodeName
+    properties:
+      roleName:
+        type: string
+        description: The role name to create (e.g. base).
+      roleDescription:
+        type: string
+        description: A human readable description of what the role does.
+      roleRunList:
+        type: array
+        description: The run list the role expands to (e.g. ["recipe[ntp]", "recipe[users]"]).
+        items:
+          type: string
+      defaultAttributes:
+        type: object
+        description: Default-precedence attributes carried by the role.
+      nodeName:
+        type: string
+        description: The node that should take on the role.
+      nodeRunList:
+        type: array
+        description: The node's full amended run list, including "role[<roleName>]".
+        items:
+          type: string
+      chefEnvironment:
+        type: string
+        description: The Chef environment to keep on the node object.
+  steps:
+  - stepId: createRoleObject
+    description: >-
+      Create the role with its run list and default attributes. The Infra Server
+      returns 409 if the role name is already taken.
+    operationId: createRole
+    requestBody:
+      contentType: application/json
+      payload:
+        name: $inputs.roleName
+        chef_type: role
+        json_class: Chef::Role
+        description: $inputs.roleDescription
+        run_list: $inputs.roleRunList
+        default_attributes: $inputs.defaultAttributes
+        override_attributes: {}
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      roleUri: $response.body#/uri
+  - stepId: readBackRole
+    description: >-
+      Read the role back to confirm the server stored the run list before any
+      node is pointed at it.
+    operationId: getRole
+    parameters:
+    - name: roleName
+      in: path
+      value: $inputs.roleName
+    successCriteria:
+    - condition: $statusCode == 200
+    - context: $response.body
+      condition: $.name == '$inputs.roleName'
+      type: jsonpath
+    outputs:
+      roleName: $response.body#/name
+      roleRunList: $response.body#/run_list
+  - stepId: readTargetNode
+    description: >-
+      Read the target node so its environment and attributes survive the
+      whole-object PUT that follows.
+    operationId: getNode
+    parameters:
+    - name: nodeName
+      in: path
+      value: $inputs.nodeName
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      currentRunList: $response.body#/run_list
+      normalAttributes: $response.body#/normal
+  - stepId: applyRoleToNode
+    description: >-
+      Write the node back with the role in its run list so the next chef-client
+      run picks up the role's recipes and attributes.
+    operationId: updateNode
+    parameters:
+    - name: nodeName
+      in: path
+      value: $inputs.nodeName
+    requestBody:
+      contentType: application/json
+      payload:
+        name: $inputs.nodeName
+        chef_type: node
+        json_class: Chef::Node
+        chef_environment: $inputs.chefEnvironment
+        run_list: $inputs.nodeRunList
+        normal: $steps.readTargetNode.outputs.normalAttributes
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      nodeRunList: $response.body#/run_list
+  outputs:
+    roleName: $steps.readBackRole.outputs.roleName
+    roleRunList: $steps.readBackRole.outputs.roleRunList
+    nodeRunList: $steps.applyRoleToNode.outputs.nodeRunList

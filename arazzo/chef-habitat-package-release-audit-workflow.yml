@@ -1,0 +1,86 @@
+arazzo: 1.0.1
+info:
+  title: Chef Habitat Audit an Origin's Package Releases and Channels
+  summary: List an origin's packages, resolve one package's releases, and map the origin's promotion channels.
+  description: >-
+    What a release engineer or a deployment pipeline needs from Habitat Builder
+    before it promotes anything: what does this origin ship, what releases exist
+    for the package in question, and which channels are available to promote
+    into. The workflow reads the origin's package list, drills into a single
+    package to enumerate its versions and releases, and lists the origin's
+    channels so the promotion target is a channel that genuinely exists. This is
+    a read-only audit against the public Habitat Builder depot; it inspects and
+    reports, it does not promote. Each step spells out its request inline so the
+    flow can be read and executed without opening the underlying OpenAPI
+    description.
+  version: 1.0.0
+sourceDescriptions:
+- name: chefHabitatBuilderApi
+  url: ../openapi/chef-habitat-builder-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: audit-origin-releases
+  summary: Inventory a Habitat origin's packages, releases, and promotion channels.
+  description: >-
+    Lists packages for an origin, resolves the releases of a named package, and
+    enumerates the channels the origin can promote into.
+  inputs:
+    type: object
+    required:
+    - origin
+    - pkg
+    properties:
+      origin:
+        type: string
+        description: The Habitat origin to audit (e.g. core).
+      pkg:
+        type: string
+        description: The package name within the origin to resolve releases for (e.g. redis).
+  steps:
+  - stepId: listPackages
+    description: >-
+      List every package published under the origin, establishing what this
+      origin actually ships before drilling into one of them.
+    operationId: listOriginPackages
+    parameters:
+    - name: origin
+      in: path
+      value: $inputs.origin
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      packages: $response.body#/data
+      totalPackages: $response.body#/total_count
+  - stepId: resolvePackageReleases
+    description: >-
+      Fetch the named package to enumerate its versions and releases, which is
+      what a promotion or a pin needs to reference.
+    operationId: getPackage
+    parameters:
+    - name: origin
+      in: path
+      value: $inputs.origin
+    - name: pkg
+      in: path
+      value: $inputs.pkg
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      releases: $response.body#/data
+  - stepId: listPromotionChannels
+    description: >-
+      List the origin's channels so a promotion targets a channel that exists
+      rather than silently creating drift between environments.
+    operationId: listChannels
+    parameters:
+    - name: origin
+      in: path
+      value: $inputs.origin
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      channels: $response.body
+  outputs:
+    packages: $steps.listPackages.outputs.packages
+    releases: $steps.resolvePackageReleases.outputs.releases
+    channels: $steps.listPromotionChannels.outputs.channels

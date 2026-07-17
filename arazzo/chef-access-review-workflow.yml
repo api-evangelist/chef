@@ -1,0 +1,71 @@
+arazzo: 1.0.1
+info:
+  title: Chef Review Access Across Infra Server and Automate
+  summary: Enumerate Infra Server clients and users alongside Automate IAM users for one access review.
+  description: >-
+    Chef splits identity across two planes, and an access review that looks at
+    only one of them is not a review. The Infra Server holds API clients, which
+    are the RSA identities that nodes and CI systems authenticate with, plus the
+    human users associated with the organization. Chef Automate maintains its
+    own IAM user list governing who can see convergence and compliance data.
+    This workflow walks all three in a single pass so an auditor can reconcile
+    them: a client with no surviving node, a user who left, or an Automate
+    identity with no Infra Server counterpart all surface by comparing these
+    outputs. This is strictly read-only; it reports, it revokes nothing. Note
+    the two collections come from different services with different
+    authentication, and each step spells out its request inline so the flow can
+    be read and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: chefInfraServerApi
+  url: ../openapi/chef-infra-server-api-openapi.yml
+  type: openapi
+- name: chefAutomateApi
+  url: ../openapi/chef-automate-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: review-access
+  summary: Collect Infra Server clients and users plus Automate IAM users for reconciliation.
+  description: >-
+    Lists Infra Server API clients and organization users, then lists Chef
+    Automate IAM users, returning all three for a cross-plane access review.
+  inputs:
+    type: object
+    properties:
+      reviewLabel:
+        type: string
+        description: An optional label for the review run (e.g. "2026-Q3-access-review").
+  steps:
+  - stepId: collectInfraClients
+    description: >-
+      List the Infra Server API clients. These are the RSA-keyed machine
+      identities nodes and pipelines use, and they are the most common source of
+      stale, over-privileged access.
+    operationId: listClients
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      clients: $response.body
+  - stepId: collectInfraUsers
+    description: >-
+      List the human users associated with the Infra Server organization so
+      departures can be reconciled against the client list.
+    operationId: listUsers
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      infraUsers: $response.body
+  - stepId: collectAutomateIamUsers
+    description: >-
+      List the Chef Automate IAM users, covering the visibility and compliance
+      plane that the Infra Server user list does not describe. This step
+      authenticates with an Automate API token rather than Chef signed headers.
+    operationId: listIamUsers
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      automateUsers: $response.body#/users
+  outputs:
+    clients: $steps.collectInfraClients.outputs.clients
+    infraUsers: $steps.collectInfraUsers.outputs.infraUsers
+    automateUsers: $steps.collectAutomateIamUsers.outputs.automateUsers

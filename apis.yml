@@ -169,6 +169,30 @@ common:
     url: json-schema/chef-compliance-profile-schema.json
   - type: Spectral
     url: spectral/chef-spectral.yml
+  - type: Arazzo
+    url: arazzo/chef-node-registration-workflow.yml
+    name: Chef Register a Node on the Infra Server
+  - type: Arazzo
+    url: arazzo/chef-node-runlist-update-workflow.yml
+    name: Chef Add a Cookbook to a Node Run List
+  - type: Arazzo
+    url: arazzo/chef-role-assignment-workflow.yml
+    name: Chef Define a Role and Assign It to a Node
+  - type: Arazzo
+    url: arazzo/chef-node-decommission-workflow.yml
+    name: Chef Decommission a Node
+  - type: Arazzo
+    url: arazzo/chef-compliance-scan-workflow.yml
+    name: Chef Automate Run a Compliance Scan and Retrieve Reports
+  - type: Arazzo
+    url: arazzo/chef-habitat-package-release-audit-workflow.yml
+    name: Chef Habitat Audit an Origin's Package Releases and Channels
+  - type: Arazzo
+    url: arazzo/chef-infra-inventory-snapshot-workflow.yml
+    name: Chef Snapshot an Infra Server Organization Inventory
+  - type: Arazzo
+    url: arazzo/chef-access-review-workflow.yml
+    name: Chef Review Access Across Infra Server and Automate
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

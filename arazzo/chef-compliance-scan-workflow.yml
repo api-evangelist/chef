@@ -1,0 +1,109 @@
+arazzo: 1.0.1
+info:
+  title: Chef Automate Run a Compliance Scan and Retrieve Reports
+  summary: Resolve profiles and nodes, launch a scan job, then search reporting for the results.
+  description: >-
+    The full order-then-collect loop that makes Chef Automate useful to anything
+    outside its own UI, and the flow a CI pipeline or a compliance dashboard
+    actually needs. The workflow lists the InSpec profiles installed in Automate
+    and the nodes Automate is managing so the scan targets real identifiers
+    rather than guesses, creates the scan job against that profile/node pairing,
+    and then searches the reporting index for the resulting report. Scan jobs
+    are asynchronous, so the reporting search is the collection step and may
+    need to be repeated until the report for the run appears. Every request is
+    sent with an Automate API token in the api-token header. Each step spells
+    out its request inline so the flow can be read and executed without opening
+    the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: chefAutomateApi
+  url: ../openapi/chef-automate-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: run-compliance-scan
+  summary: Launch an InSpec scan job in Chef Automate and collect its report.
+  description: >-
+    Resolves the available compliance profiles and managed nodes, creates a scan
+    job across them, and searches compliance reporting for the outcome.
+  inputs:
+    type: object
+    required:
+    - jobName
+    - profiles
+    - nodes
+    properties:
+      jobName:
+        type: string
+        description: A name for the scan job (e.g. "nightly-cis-baseline").
+      profiles:
+        type: array
+        description: The InSpec profile identifiers to run, as resolved from the profiles list.
+        items:
+          type: string
+      nodes:
+        type: array
+        description: The node identifiers to scan, as resolved from the managed nodes list.
+        items:
+          type: string
+      reportFilters:
+        type: array
+        description: Reporting filters narrowing the search to this run (e.g. by job_id or date).
+        items:
+          type: object
+      perPage:
+        type: integer
+        description: How many reports to return per page from the reporting search.
+  steps:
+  - stepId: listProfiles
+    description: >-
+      List the InSpec compliance profiles installed in Automate so the scan job
+      references a profile the server can actually resolve.
+    operationId: listComplianceProfiles
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      profiles: $response.body
+  - stepId: listNodes
+    description: >-
+      List the nodes Automate is managing so the scan targets real, reporting
+      infrastructure rather than an unmanaged host.
+    operationId: listManagedNodes
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      nodes: $response.body
+  - stepId: createJob
+    description: >-
+      Create the compliance scan job pairing the chosen profiles with the chosen
+      nodes. Automate queues the job and executes it asynchronously.
+    operationId: createScanJob
+    requestBody:
+      contentType: application/json
+      payload:
+        name: $inputs.jobName
+        profiles: $inputs.profiles
+        nodes: $inputs.nodes
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      jobId: $response.body#/id
+  - stepId: searchScanReports
+    description: >-
+      Search the compliance reporting index for the report produced by the scan.
+      Because the job runs asynchronously, this step is the collection point and
+      may be repeated until the report for the job appears.
+    operationId: searchReports
+    requestBody:
+      contentType: application/json
+      payload:
+        filters: $inputs.reportFilters
+        page: 1
+        per_page: $inputs.perPage
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      reports: $response.body#/reports
+  outputs:
+    jobId: $steps.createJob.outputs.jobId
+    reports: $steps.searchScanReports.outputs.reports
+    scannedNodes: $steps.listNodes.outputs.nodes

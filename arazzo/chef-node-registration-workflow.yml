@@ -1,0 +1,103 @@
+arazzo: 1.0.1
+info:
+  title: Chef Register a Node on the Infra Server
+  summary: Check whether a node already exists, create it if it does not, and read it back.
+  description: >-
+    The entry point for every Chef Infra Server integration. The workflow lists
+    the organization's nodes to detect an existing registration, branches to
+    create the node object only when it is genuinely new, and then reads the
+    node back to confirm the run list and environment landed as sent. The
+    server and organization are carried in the Infra Server base URL
+    (https://{server}/organizations/{org}), and every request is signed with
+    Chef signed-header authentication using the client RSA key. Each step
+    spells out its request inline so the flow can be read and executed without
+    opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: chefInfraServerApi
+  url: ../openapi/chef-infra-server-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: register-node
+  summary: Idempotently register a node with the Chef Infra Server.
+  description: >-
+    Lists the existing nodes, creates the node object when the name is not
+    already taken, and reads the created node back to verify its run list.
+  inputs:
+    type: object
+    required:
+    - nodeName
+    properties:
+      nodeName:
+        type: string
+        description: The unique node name to register (e.g. web-01.example.com).
+      chefEnvironment:
+        type: string
+        description: The Chef environment to place the node in (e.g. production).
+      runList:
+        type: array
+        description: The ordered run list for the node (e.g. ["role[base]", "recipe[nginx]"]).
+        items:
+          type: string
+      normalAttributes:
+        type: object
+        description: Normal-precedence attributes to set on the node object.
+  steps:
+  - stepId: listExistingNodes
+    description: >-
+      List the organization's nodes so the workflow can tell a new registration
+      from a node that is already under management.
+    operationId: listNodes
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      nodes: $response.body
+    onSuccess:
+    - name: nodeMissing
+      type: goto
+      stepId: createNodeObject
+      criteria:
+      - context: $response.body
+        condition: $[?(@property == '$inputs.nodeName')] empty true
+        type: jsonpath
+  - stepId: createNodeObject
+    description: >-
+      Create the node object with its environment, run list, and normal
+      attributes. The Infra Server rejects a duplicate node name with a 409,
+      which keeps the registration idempotent.
+    operationId: createNode
+    requestBody:
+      contentType: application/json
+      payload:
+        name: $inputs.nodeName
+        chef_type: node
+        json_class: Chef::Node
+        chef_environment: $inputs.chefEnvironment
+        run_list: $inputs.runList
+        normal: $inputs.normalAttributes
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      nodeUri: $response.body#/uri
+  - stepId: readBackNode
+    description: >-
+      Read the node back by name to confirm the Infra Server persisted the
+      environment and run list exactly as they were sent.
+    operationId: getNode
+    parameters:
+    - name: nodeName
+      in: path
+      value: $inputs.nodeName
+    successCriteria:
+    - condition: $statusCode == 200
+    - context: $response.body
+      condition: $.name == '$inputs.nodeName'
+      type: jsonpath
+    outputs:
+      nodeName: $response.body#/name
+      chefEnvironment: $response.body#/chef_environment
+      runList: $response.body#/run_list
+  outputs:
+    nodeName: $steps.readBackNode.outputs.nodeName
+    chefEnvironment: $steps.readBackNode.outputs.chefEnvironment
+    runList: $steps.readBackNode.outputs.runList

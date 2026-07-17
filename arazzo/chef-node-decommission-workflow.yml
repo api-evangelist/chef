@@ -1,0 +1,79 @@
+arazzo: 1.0.1
+info:
+  title: Chef Decommission a Node
+  summary: Capture a node's final state, delete the node object, and confirm it left the inventory.
+  description: >-
+    The offboarding half of node lifecycle management, and the one most often
+    skipped. When a machine is retired its node object lingers on the Infra
+    Server, keeping stale inventory and a valid client identity in play. This
+    workflow reads the node one last time so its run list and environment can be
+    archived, deletes the node object, and then relists the organization's nodes
+    to prove the removal took. Note that this removes the node object only; the
+    matching client identity is listed separately and is not deleted here. Each
+    step spells out its request inline so the flow can be read and executed
+    without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: chefInfraServerApi
+  url: ../openapi/chef-infra-server-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: decommission-node
+  summary: Archive and remove a retired node from the Chef Infra Server.
+  description: >-
+    Reads the node's final state for the archive record, deletes it, and relists
+    nodes to confirm the object is gone.
+  inputs:
+    type: object
+    required:
+    - nodeName
+    properties:
+      nodeName:
+        type: string
+        description: The node being retired (e.g. web-01.example.com).
+  steps:
+  - stepId: captureFinalState
+    description: >-
+      Read the node one last time so its environment, run list, and attributes
+      can be archived before the object is destroyed.
+    operationId: getNode
+    parameters:
+    - name: nodeName
+      in: path
+      value: $inputs.nodeName
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      finalRunList: $response.body#/run_list
+      finalEnvironment: $response.body#/chef_environment
+      finalAttributes: $response.body#/normal
+  - stepId: deleteNodeObject
+    description: >-
+      Delete the node object from the organization. The Infra Server returns the
+      deleted node document in the response body.
+    operationId: deleteNode
+    parameters:
+    - name: nodeName
+      in: path
+      value: $inputs.nodeName
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      deletedNode: $response.body#/name
+  - stepId: confirmRemoval
+    description: >-
+      Relist the organization's nodes and assert the retired name is no longer
+      present, closing the loop on the decommission.
+    operationId: listNodes
+    successCriteria:
+    - condition: $statusCode == 200
+    - context: $response.body
+      condition: $[?(@property == '$inputs.nodeName')] empty true
+      type: jsonpath
+    outputs:
+      remainingNodes: $response.body
+  outputs:
+    deletedNode: $steps.deleteNodeObject.outputs.deletedNode
+    archivedRunList: $steps.captureFinalState.outputs.finalRunList
+    archivedEnvironment: $steps.captureFinalState.outputs.finalEnvironment
+    remainingNodes: $steps.confirmRemoval.outputs.remainingNodes

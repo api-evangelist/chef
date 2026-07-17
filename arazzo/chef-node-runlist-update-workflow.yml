@@ -1,0 +1,123 @@
+arazzo: 1.0.1
+info:
+  title: Chef Add a Cookbook to a Node Run List
+  summary: Confirm a cookbook exists, read the node, append the recipe to its run list, and verify.
+  description: >-
+    The most common day-two change on a Chef Infra Server. Rather than blindly
+    writing a run list, the workflow first confirms the cookbook is actually
+    published to the organization, reads the current node object so the update
+    preserves existing attributes, writes the amended run list, and reads the
+    node back to prove the change converged into the server. Node updates on
+    the Infra Server are whole-object PUTs, so the read-modify-write ordering
+    here is required, not optional. Each step spells out its request inline so
+    the flow can be read and executed without opening the underlying OpenAPI
+    description.
+  version: 1.0.0
+sourceDescriptions:
+- name: chefInfraServerApi
+  url: ../openapi/chef-infra-server-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: update-node-run-list
+  summary: Append a cookbook recipe to a node's run list safely.
+  description: >-
+    Verifies the cookbook is published, reads the current node object, PUTs the
+    amended run list, and reads the node back to confirm the new entry.
+  inputs:
+    type: object
+    required:
+    - cookbookName
+    - nodeName
+    - runListEntry
+    properties:
+      cookbookName:
+        type: string
+        description: The cookbook that must exist before it is added to the run list (e.g. nginx).
+      nodeName:
+        type: string
+        description: The node whose run list is being amended.
+      runListEntry:
+        type: string
+        description: The run list entry to append (e.g. "recipe[nginx::default]").
+      runList:
+        type: array
+        description: The full amended run list to write, including the new entry.
+        items:
+          type: string
+      chefEnvironment:
+        type: string
+        description: The Chef environment to keep on the node object.
+      normalAttributes:
+        type: object
+        description: The node's normal-precedence attributes, carried through the PUT unchanged.
+  steps:
+  - stepId: confirmCookbookPublished
+    description: >-
+      Fetch the cookbook's published versions. A 404 here means the cookbook was
+      never uploaded to this organization and the run list entry would fail at
+      converge time on every node.
+    operationId: getCookbook
+    parameters:
+    - name: cookbookName
+      in: path
+      value: $inputs.cookbookName
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      cookbookVersions: $response.body
+  - stepId: readCurrentNode
+    description: >-
+      Read the current node object. Infra Server node updates replace the whole
+      document, so the existing attributes must be in hand before writing.
+    operationId: getNode
+    parameters:
+    - name: nodeName
+      in: path
+      value: $inputs.nodeName
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      currentRunList: $response.body#/run_list
+      currentEnvironment: $response.body#/chef_environment
+  - stepId: writeAmendedRunList
+    description: >-
+      PUT the node object back with the amended run list, carrying the
+      environment and normal attributes through so nothing is dropped.
+    operationId: updateNode
+    parameters:
+    - name: nodeName
+      in: path
+      value: $inputs.nodeName
+    requestBody:
+      contentType: application/json
+      payload:
+        name: $inputs.nodeName
+        chef_type: node
+        json_class: Chef::Node
+        chef_environment: $inputs.chefEnvironment
+        run_list: $inputs.runList
+        normal: $inputs.normalAttributes
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      updatedRunList: $response.body#/run_list
+  - stepId: verifyRunList
+    description: >-
+      Read the node back and assert the new run list entry is present, proving
+      the change is what the next chef-client run will pick up.
+    operationId: getNode
+    parameters:
+    - name: nodeName
+      in: path
+      value: $inputs.nodeName
+    successCriteria:
+    - condition: $statusCode == 200
+    - context: $response.body
+      condition: $.run_list[?(@ == '$inputs.runListEntry')]
+      type: jsonpath
+    outputs:
+      runList: $response.body#/run_list
+      chefEnvironment: $response.body#/chef_environment
+  outputs:
+    runList: $steps.verifyRunList.outputs.runList
+    previousRunList: $steps.readCurrentNode.outputs.currentRunList

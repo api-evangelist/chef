@@ -1,0 +1,85 @@
+arazzo: 1.0.1
+info:
+  title: Chef Snapshot an Infra Server Organization Inventory
+  summary: Walk nodes, cookbooks, roles, environments, and data bags to build one organization snapshot.
+  description: >-
+    The read-only sweep behind CMDB synchronization, drift reporting, and
+    disaster-recovery documentation. Chef's Infra Server keeps each class of
+    object behind its own collection endpoint, so a complete picture of an
+    organization means walking all of them in one pass and treating the result
+    as a single point-in-time snapshot. The workflow lists nodes, cookbooks,
+    roles, environments, and data bags in sequence, emitting each collection as
+    a named output that a downstream system can diff against its own inventory.
+    Data bag items are not read here, only the bags themselves, which keeps
+    encrypted secrets out of the snapshot by design. Each step spells out its
+    request inline so the flow can be read and executed without opening the
+    underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: chefInfraServerApi
+  url: ../openapi/chef-infra-server-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: snapshot-org-inventory
+  summary: Collect a full point-in-time inventory of a Chef Infra Server organization.
+  description: >-
+    Walks every top-level Infra Server collection for the organization in the
+    base URL and returns each as a named output for diffing or archiving.
+  inputs:
+    type: object
+    properties:
+      snapshotLabel:
+        type: string
+        description: An optional label for the snapshot run (e.g. "2026-07-16-nightly").
+  steps:
+  - stepId: collectNodes
+    description: >-
+      List every node under management. This is the backbone of the snapshot and
+      the collection most likely to have drifted since the last run.
+    operationId: listNodes
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      nodes: $response.body
+  - stepId: collectCookbooks
+    description: >-
+      List the cookbooks published to the organization along with their
+      available versions, establishing what the nodes are able to converge.
+    operationId: listCookbooks
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      cookbooks: $response.body
+  - stepId: collectRoles
+    description: >-
+      List the roles defined for the organization, which is how run lists in the
+      node snapshot resolve to real recipes.
+    operationId: listRoles
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      roles: $response.body
+  - stepId: collectEnvironments
+    description: >-
+      List the environments, capturing how the organization separates
+      production, staging, and development cookbook version constraints.
+    operationId: listEnvironments
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      environments: $response.body
+  - stepId: collectDataBags
+    description: >-
+      List the data bags themselves without reading their items, recording where
+      configuration data lives while leaving encrypted contents untouched.
+    operationId: listDataBags
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      dataBags: $response.body
+  outputs:
+    nodes: $steps.collectNodes.outputs.nodes
+    cookbooks: $steps.collectCookbooks.outputs.cookbooks
+    roles: $steps.collectRoles.outputs.roles
+    environments: $steps.collectEnvironments.outputs.environments
+    dataBags: $steps.collectDataBags.outputs.dataBags
