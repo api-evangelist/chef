@@ -1,0 +1,110 @@
+openapi: 3.1.0
+info:
+  title: Chef Automate Channels Nodes API
+  description: REST API for Chef Automate providing visibility into infrastructure convergence, compliance scans, and application deployment. Includes endpoints for nodes, profiles, scans, and reports.
+  version: '1.0'
+  contact:
+    name: Chef Software
+    url: https://www.chef.io/support
+servers:
+- url: https://{automate}/api/v0
+  description: Chef Automate
+  variables:
+    automate:
+      default: automate.example.com
+security:
+- apiToken: []
+tags:
+- name: Nodes
+paths:
+  /cfgmgmt/nodes:
+    get:
+      operationId: listManagedNodes
+      summary: List configuration management nodes
+      tags:
+      - Nodes
+      responses:
+        '200':
+          description: Nodes list
+  /nodes:
+    get:
+      operationId: listNodes
+      summary: List nodes
+      tags:
+      - Nodes
+      responses:
+        '200':
+          description: Node list
+    post:
+      operationId: createNode
+      summary: Create a node
+      tags:
+      - Nodes
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '201':
+          description: Node created
+  /nodes/{nodeName}:
+    get:
+      operationId: getNode
+      summary: Get a node
+      tags:
+      - Nodes
+      parameters:
+      - name: nodeName
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Node
+    put:
+      operationId: updateNode
+      summary: Update a node
+      tags:
+      - Nodes
+      parameters:
+      - name: nodeName
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Node updated
+    delete:
+      operationId: deleteNode
+      summary: Delete a node
+      tags:
+      - Nodes
+      parameters:
+      - name: nodeName
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Node deleted
+components:
+  securitySchemes:
+    apiToken:
+      type: apiKey
+      in: header
+      name: api-token
+      description: API token issued through the Chef Automate UI or admin API.
+externalDocs:
+  description: Chef Automate API
+  url: https://docs.chef.io/automate/api/

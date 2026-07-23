@@ -1,0 +1,38 @@
+openapi: 3.1.0
+info:
+  title: Chef Automate Channels IAM API
+  description: REST API for Chef Automate providing visibility into infrastructure convergence, compliance scans, and application deployment. Includes endpoints for nodes, profiles, scans, and reports.
+  version: '1.0'
+  contact:
+    name: Chef Software
+    url: https://www.chef.io/support
+servers:
+- url: https://{automate}/api/v0
+  description: Chef Automate
+  variables:
+    automate:
+      default: automate.example.com
+security:
+- apiToken: []
+tags:
+- name: IAM
+paths:
+  /apis/iam/v2/users:
+    get:
+      operationId: listIamUsers
+      summary: List IAM users
+      tags:
+      - IAM
+      responses:
+        '200':
+          description: IAM users
+components:
+  securitySchemes:
+    apiToken:
+      type: apiKey
+      in: header
+      name: api-token
+      description: API token issued through the Chef Automate UI or admin API.
+externalDocs:
+  description: Chef Automate API
+  url: https://docs.chef.io/automate/api/

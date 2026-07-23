@@ -1,0 +1,67 @@
+openapi: 3.1.0
+info:
+  title: Chef Automate Channels Roles API
+  description: REST API for Chef Automate providing visibility into infrastructure convergence, compliance scans, and application deployment. Includes endpoints for nodes, profiles, scans, and reports.
+  version: '1.0'
+  contact:
+    name: Chef Software
+    url: https://www.chef.io/support
+servers:
+- url: https://{automate}/api/v0
+  description: Chef Automate
+  variables:
+    automate:
+      default: automate.example.com
+security:
+- apiToken: []
+tags:
+- name: Roles
+paths:
+  /roles:
+    get:
+      operationId: listRoles
+      summary: List roles
+      tags:
+      - Roles
+      responses:
+        '200':
+          description: Role list
+    post:
+      operationId: createRole
+      summary: Create a role
+      tags:
+      - Roles
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '201':
+          description: Role created
+  /roles/{roleName}:
+    get:
+      operationId: getRole
+      summary: Get a role
+      tags:
+      - Roles
+      parameters:
+      - name: roleName
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Role
+components:
+  securitySchemes:
+    apiToken:
+      type: apiKey
+      in: header
+      name: api-token
+      description: API token issued through the Chef Automate UI or admin API.
+externalDocs:
+  description: Chef Automate API
+  url: https://docs.chef.io/automate/api/

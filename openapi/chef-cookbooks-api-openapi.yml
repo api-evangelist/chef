@@ -1,0 +1,53 @@
+openapi: 3.1.0
+info:
+  title: Chef Automate Channels Cookbooks API
+  description: REST API for Chef Automate providing visibility into infrastructure convergence, compliance scans, and application deployment. Includes endpoints for nodes, profiles, scans, and reports.
+  version: '1.0'
+  contact:
+    name: Chef Software
+    url: https://www.chef.io/support
+servers:
+- url: https://{automate}/api/v0
+  description: Chef Automate
+  variables:
+    automate:
+      default: automate.example.com
+security:
+- apiToken: []
+tags:
+- name: Cookbooks
+paths:
+  /cookbooks:
+    get:
+      operationId: listCookbooks
+      summary: List cookbooks
+      tags:
+      - Cookbooks
+      responses:
+        '200':
+          description: Cookbook list
+  /cookbooks/{cookbookName}:
+    get:
+      operationId: getCookbook
+      summary: Get cookbook versions
+      tags:
+      - Cookbooks
+      parameters:
+      - name: cookbookName
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Cookbook versions
+components:
+  securitySchemes:
+    apiToken:
+      type: apiKey
+      in: header
+      name: api-token
+      description: API token issued through the Chef Automate UI or admin API.
+externalDocs:
+  description: Chef Automate API
+  url: https://docs.chef.io/automate/api/

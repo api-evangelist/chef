@@ -1,0 +1,64 @@
+openapi: 3.1.0
+info:
+  title: Chef Automate Channels Packages API
+  description: REST API for Chef Automate providing visibility into infrastructure convergence, compliance scans, and application deployment. Includes endpoints for nodes, profiles, scans, and reports.
+  version: '1.0'
+  contact:
+    name: Chef Software
+    url: https://www.chef.io/support
+servers:
+- url: https://{automate}/api/v0
+  description: Chef Automate
+  variables:
+    automate:
+      default: automate.example.com
+security:
+- apiToken: []
+tags:
+- name: Packages
+paths:
+  /depot/origins/{origin}/pkgs:
+    get:
+      operationId: listOriginPackages
+      summary: List packages for an origin
+      tags:
+      - Packages
+      parameters:
+      - name: origin
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Packages
+  /depot/pkgs/{origin}/{pkg}:
+    get:
+      operationId: getPackage
+      summary: Get a package
+      tags:
+      - Packages
+      parameters:
+      - name: origin
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: pkg
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Package versions
+components:
+  securitySchemes:
+    apiToken:
+      type: apiKey
+      in: header
+      name: api-token
+      description: API token issued through the Chef Automate UI or admin API.
+externalDocs:
+  description: Chef Automate API
+  url: https://docs.chef.io/automate/api/
