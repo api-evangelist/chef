@@ -5,7 +5,20 @@ description: >-
   REST APIs for the Infra Server (managing nodes, cookbooks, roles, environments, and data bags), Chef Automate
   (visibility into convergence, compliance, and deployment), Habitat Builder (application packaging and delivery), and
   InSpec (a language and runner for security and compliance testing).
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/chef.png
 url: https://raw.githubusercontent.com/api-evangelist/chef/refs/heads/main/apis.yml
 type: Index
 access: 3rd-Party
@@ -24,87 +37,338 @@ created: '2024-01-15'
 modified: '2026-06-20'
 specificationVersion: '0.20'
 apis:
-  - aid: chef:chef-infra-server-api
-    name: Chef Infra Server API
-    description: >-
-      REST API for managing nodes, cookbooks, roles, environments, data bags, clients, and users on the Chef Infra
-      Server. Authentication uses Chef signed-header authentication with an RSA client key.
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://docs.chef.io/server/api_chef_server/
-    baseURL: https://chef.example.com/organizations/example
-    tags:
-      - Configuration Management
-      - Infrastructure
-    properties:
-      - type: Documentation
-        url: https://docs.chef.io/server/api_chef_server/
-      - type: Authentication
-        url: https://docs.chef.io/server/server_security/
-      - type: OpenAPI
-        url: openapi/chef-infra-server-api-openapi.yml
-      - type: Overlay
-        url: overlays/chef-infra-server-api-overlay.yaml
-  - aid: chef:chef-automate-api
-    name: Chef Automate API
-    description: >-
-      REST API for Chef Automate providing visibility into infrastructure convergence, compliance scans, and application
-      deployment. Includes compliance profiles, scan jobs, reports, IAM, and configuration management endpoints.
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://docs.chef.io/automate/api/
-    baseURL: https://automate.example.com/api/v0
-    tags:
-      - Automation
-      - Compliance
-      - Observability
-    properties:
-      - type: Documentation
-        url: https://docs.chef.io/automate/api/
-      - type: Reference
-        url: https://docs.chef.io/automate/api_swagger/
-      - type: Authentication
-        url: https://docs.chef.io/automate/api_tokens/
-      - type: OpenAPI
-        url: openapi/chef-automate-api-openapi.yml
-      - type: Overlay
-        url: overlays/chef-automate-api-overlay.yaml
-  - aid: chef:chef-habitat-builder-api
-    name: Chef Habitat Builder API
-    description: >-
-      REST API for Chef Habitat Builder, the package management service for Habitat application packages. Manages
-      origins, packages, channels, and deployment events.
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://docs.habitat.sh/docs/using-builder/
-    baseURL: https://bldr.habitat.sh/v1
-    tags:
-      - Application Packaging
-      - Deployment
-      - Habitat
-    properties:
-      - type: Documentation
-        url: https://docs.habitat.sh/docs/using-builder/
-      - type: Authentication
-        url: https://docs.habitat.sh/docs/using-builder/
-      - type: OpenAPI
-        url: openapi/chef-habitat-builder-api-openapi.yml
-      - type: Overlay
-        url: overlays/chef-habitat-builder-api-overlay.yaml
-  - aid: chef:chef-inspec
-    name: Chef InSpec
-    description: >-
-      InSpec is an open-source language and runner for security and compliance testing. It is consumed via the InSpec
-      CLI and Ruby DSL, and surfaced inside Chef Automate as compliance profiles, scan jobs, and reports.
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://docs.chef.io/inspec/
-    tags:
-      - Compliance
-      - Security
-      - Testing
-    properties:
-      - type: Documentation
-        url: https://docs.chef.io/inspec/
-      - type: GitHub
-        url: https://github.com/inspec/inspec
+- aid: chef:chef-inspec
+  name: Chef InSpec
+  description: >-
+    InSpec is an open-source language and runner for security and compliance testing. It is consumed via
+    the InSpec CLI and Ruby DSL, and surfaced inside Chef Automate as compliance profiles, scan jobs,
+    and reports.
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.chef.io/inspec/
+  tags:
+  - Compliance
+  - Security
+  - Testing
+  properties:
+  - type: Documentation
+    url: https://docs.chef.io/inspec/
+  - type: GitHub
+    url: https://github.com/inspec/inspec
+- aid: chef:chef-channels-api
+  name: Chef Channels API
+  description: The Channels API from Chef — 1 operation(s) for channels.
+  humanURL: https://docs.chef.io/server/api_chef_server/
+  baseURL: https://chef.example.com/organizations/example
+  tags:
+  - Channels
+  properties:
+  - type: OpenAPI
+    url: openapi/chef-channels-api-openapi.yml
+  - type: Documentation
+    url: https://docs.chef.io/server/api_chef_server/
+  - type: Authentication
+    url: https://docs.chef.io/server/server_security/
+  - type: Documentation
+    url: https://docs.chef.io/automate/api/
+  - type: Reference
+    url: https://docs.chef.io/automate/api_swagger/
+  - type: Authentication
+    url: https://docs.chef.io/automate/api_tokens/
+  - type: Documentation
+    url: https://docs.habitat.sh/docs/using-builder/
+  - type: Authentication
+    url: https://docs.habitat.sh/docs/using-builder/
+- aid: chef:chef-clients-api
+  name: Chef Clients API
+  description: The Clients API from Chef — 1 operation(s) for clients.
+  humanURL: https://docs.chef.io/server/api_chef_server/
+  baseURL: https://chef.example.com/organizations/example
+  tags:
+  - Clients
+  properties:
+  - type: OpenAPI
+    url: openapi/chef-clients-api-openapi.yml
+  - type: Documentation
+    url: https://docs.chef.io/server/api_chef_server/
+  - type: Authentication
+    url: https://docs.chef.io/server/server_security/
+  - type: Documentation
+    url: https://docs.chef.io/automate/api/
+  - type: Reference
+    url: https://docs.chef.io/automate/api_swagger/
+  - type: Authentication
+    url: https://docs.chef.io/automate/api_tokens/
+  - type: Documentation
+    url: https://docs.habitat.sh/docs/using-builder/
+  - type: Authentication
+    url: https://docs.habitat.sh/docs/using-builder/
+- aid: chef:chef-cookbooks-api
+  name: Chef Cookbooks API
+  description: The Cookbooks API from Chef — 2 operation(s) for cookbooks.
+  humanURL: https://docs.chef.io/server/api_chef_server/
+  baseURL: https://chef.example.com/organizations/example
+  tags:
+  - Cookbooks
+  properties:
+  - type: OpenAPI
+    url: openapi/chef-cookbooks-api-openapi.yml
+  - type: Documentation
+    url: https://docs.chef.io/server/api_chef_server/
+  - type: Authentication
+    url: https://docs.chef.io/server/server_security/
+  - type: Documentation
+    url: https://docs.chef.io/automate/api/
+  - type: Reference
+    url: https://docs.chef.io/automate/api_swagger/
+  - type: Authentication
+    url: https://docs.chef.io/automate/api_tokens/
+  - type: Documentation
+    url: https://docs.habitat.sh/docs/using-builder/
+  - type: Authentication
+    url: https://docs.habitat.sh/docs/using-builder/
+- aid: chef:chef-data-bags-api
+  name: Chef Data Bags API
+  description: The Data Bags API from Chef — 1 operation(s) for data bags.
+  humanURL: https://docs.chef.io/server/api_chef_server/
+  baseURL: https://chef.example.com/organizations/example
+  tags:
+  - Data Bags
+  properties:
+  - type: OpenAPI
+    url: openapi/chef-data-bags-api-openapi.yml
+  - type: Documentation
+    url: https://docs.chef.io/server/api_chef_server/
+  - type: Authentication
+    url: https://docs.chef.io/server/server_security/
+  - type: Documentation
+    url: https://docs.chef.io/automate/api/
+  - type: Reference
+    url: https://docs.chef.io/automate/api_swagger/
+  - type: Authentication
+    url: https://docs.chef.io/automate/api_tokens/
+  - type: Documentation
+    url: https://docs.habitat.sh/docs/using-builder/
+  - type: Authentication
+    url: https://docs.habitat.sh/docs/using-builder/
+- aid: chef:chef-environments-api
+  name: Chef Environments API
+  description: The Environments API from Chef — 1 operation(s) for environments.
+  humanURL: https://docs.chef.io/server/api_chef_server/
+  baseURL: https://chef.example.com/organizations/example
+  tags:
+  - Environments
+  properties:
+  - type: OpenAPI
+    url: openapi/chef-environments-api-openapi.yml
+  - type: Documentation
+    url: https://docs.chef.io/server/api_chef_server/
+  - type: Authentication
+    url: https://docs.chef.io/server/server_security/
+  - type: Documentation
+    url: https://docs.chef.io/automate/api/
+  - type: Reference
+    url: https://docs.chef.io/automate/api_swagger/
+  - type: Authentication
+    url: https://docs.chef.io/automate/api_tokens/
+  - type: Documentation
+    url: https://docs.habitat.sh/docs/using-builder/
+  - type: Authentication
+    url: https://docs.habitat.sh/docs/using-builder/
+- aid: chef:chef-iam-api
+  name: Chef IAM API
+  description: The IAM API from Chef — 1 operation(s) for iam.
+  humanURL: https://docs.chef.io/server/api_chef_server/
+  baseURL: https://chef.example.com/organizations/example
+  tags:
+  - IAM
+  properties:
+  - type: OpenAPI
+    url: openapi/chef-iam-api-openapi.yml
+  - type: Documentation
+    url: https://docs.chef.io/server/api_chef_server/
+  - type: Authentication
+    url: https://docs.chef.io/server/server_security/
+  - type: Documentation
+    url: https://docs.chef.io/automate/api/
+  - type: Reference
+    url: https://docs.chef.io/automate/api_swagger/
+  - type: Authentication
+    url: https://docs.chef.io/automate/api_tokens/
+  - type: Documentation
+    url: https://docs.habitat.sh/docs/using-builder/
+  - type: Authentication
+    url: https://docs.habitat.sh/docs/using-builder/
+- aid: chef:chef-nodes-api
+  name: Chef Nodes API
+  description: The Nodes API from Chef — 3 operation(s) for nodes.
+  humanURL: https://docs.chef.io/server/api_chef_server/
+  baseURL: https://chef.example.com/organizations/example
+  tags:
+  - Nodes
+  properties:
+  - type: OpenAPI
+    url: openapi/chef-nodes-api-openapi.yml
+  - type: Documentation
+    url: https://docs.chef.io/server/api_chef_server/
+  - type: Authentication
+    url: https://docs.chef.io/server/server_security/
+  - type: Documentation
+    url: https://docs.chef.io/automate/api/
+  - type: Reference
+    url: https://docs.chef.io/automate/api_swagger/
+  - type: Authentication
+    url: https://docs.chef.io/automate/api_tokens/
+  - type: Documentation
+    url: https://docs.habitat.sh/docs/using-builder/
+  - type: Authentication
+    url: https://docs.habitat.sh/docs/using-builder/
+- aid: chef:chef-packages-api
+  name: Chef Packages API
+  description: The Packages API from Chef — 2 operation(s) for packages.
+  humanURL: https://docs.chef.io/server/api_chef_server/
+  baseURL: https://chef.example.com/organizations/example
+  tags:
+  - Packages
+  properties:
+  - type: OpenAPI
+    url: openapi/chef-packages-api-openapi.yml
+  - type: Documentation
+    url: https://docs.chef.io/server/api_chef_server/
+  - type: Authentication
+    url: https://docs.chef.io/server/server_security/
+  - type: Documentation
+    url: https://docs.chef.io/automate/api/
+  - type: Reference
+    url: https://docs.chef.io/automate/api_swagger/
+  - type: Authentication
+    url: https://docs.chef.io/automate/api_tokens/
+  - type: Documentation
+    url: https://docs.habitat.sh/docs/using-builder/
+  - type: Authentication
+    url: https://docs.habitat.sh/docs/using-builder/
+- aid: chef:chef-profiles-api
+  name: Chef Profiles API
+  description: The Profiles API from Chef — 1 operation(s) for profiles.
+  humanURL: https://docs.chef.io/server/api_chef_server/
+  baseURL: https://chef.example.com/organizations/example
+  tags:
+  - Profiles
+  properties:
+  - type: OpenAPI
+    url: openapi/chef-profiles-api-openapi.yml
+  - type: Documentation
+    url: https://docs.chef.io/server/api_chef_server/
+  - type: Authentication
+    url: https://docs.chef.io/server/server_security/
+  - type: Documentation
+    url: https://docs.chef.io/automate/api/
+  - type: Reference
+    url: https://docs.chef.io/automate/api_swagger/
+  - type: Authentication
+    url: https://docs.chef.io/automate/api_tokens/
+  - type: Documentation
+    url: https://docs.habitat.sh/docs/using-builder/
+  - type: Authentication
+    url: https://docs.habitat.sh/docs/using-builder/
+- aid: chef:chef-reports-api
+  name: Chef Reports API
+  description: The Reports API from Chef — 1 operation(s) for reports.
+  humanURL: https://docs.chef.io/server/api_chef_server/
+  baseURL: https://chef.example.com/organizations/example
+  tags:
+  - Reports
+  properties:
+  - type: OpenAPI
+    url: openapi/chef-reports-api-openapi.yml
+  - type: Documentation
+    url: https://docs.chef.io/server/api_chef_server/
+  - type: Authentication
+    url: https://docs.chef.io/server/server_security/
+  - type: Documentation
+    url: https://docs.chef.io/automate/api/
+  - type: Reference
+    url: https://docs.chef.io/automate/api_swagger/
+  - type: Authentication
+    url: https://docs.chef.io/automate/api_tokens/
+  - type: Documentation
+    url: https://docs.habitat.sh/docs/using-builder/
+  - type: Authentication
+    url: https://docs.habitat.sh/docs/using-builder/
+- aid: chef:chef-roles-api
+  name: Chef Roles API
+  description: The Roles API from Chef — 2 operation(s) for roles.
+  humanURL: https://docs.chef.io/server/api_chef_server/
+  baseURL: https://chef.example.com/organizations/example
+  tags:
+  - Roles
+  properties:
+  - type: OpenAPI
+    url: openapi/chef-roles-api-openapi.yml
+  - type: Documentation
+    url: https://docs.chef.io/server/api_chef_server/
+  - type: Authentication
+    url: https://docs.chef.io/server/server_security/
+  - type: Documentation
+    url: https://docs.chef.io/automate/api/
+  - type: Reference
+    url: https://docs.chef.io/automate/api_swagger/
+  - type: Authentication
+    url: https://docs.chef.io/automate/api_tokens/
+  - type: Documentation
+    url: https://docs.habitat.sh/docs/using-builder/
+  - type: Authentication
+    url: https://docs.habitat.sh/docs/using-builder/
+- aid: chef:chef-scans-api
+  name: Chef Scans API
+  description: The Scans API from Chef — 1 operation(s) for scans.
+  humanURL: https://docs.chef.io/server/api_chef_server/
+  baseURL: https://chef.example.com/organizations/example
+  tags:
+  - Scans
+  properties:
+  - type: OpenAPI
+    url: openapi/chef-scans-api-openapi.yml
+  - type: Documentation
+    url: https://docs.chef.io/server/api_chef_server/
+  - type: Authentication
+    url: https://docs.chef.io/server/server_security/
+  - type: Documentation
+    url: https://docs.chef.io/automate/api/
+  - type: Reference
+    url: https://docs.chef.io/automate/api_swagger/
+  - type: Authentication
+    url: https://docs.chef.io/automate/api_tokens/
+  - type: Documentation
+    url: https://docs.habitat.sh/docs/using-builder/
+  - type: Authentication
+    url: https://docs.habitat.sh/docs/using-builder/
+- aid: chef:chef-users-api
+  name: Chef Users API
+  description: The Users API from Chef — 1 operation(s) for users.
+  humanURL: https://docs.chef.io/server/api_chef_server/
+  baseURL: https://chef.example.com/organizations/example
+  tags:
+  - Users
+  properties:
+  - type: OpenAPI
+    url: openapi/chef-users-api-openapi.yml
+  - type: Documentation
+    url: https://docs.chef.io/server/api_chef_server/
+  - type: Authentication
+    url: https://docs.chef.io/server/server_security/
+  - type: Documentation
+    url: https://docs.chef.io/automate/api/
+  - type: Reference
+    url: https://docs.chef.io/automate/api_swagger/
+  - type: Authentication
+    url: https://docs.chef.io/automate/api_tokens/
+  - type: Documentation
+    url: https://docs.habitat.sh/docs/using-builder/
+  - type: Authentication
+    url: https://docs.habitat.sh/docs/using-builder/
 common:
+  - type: PostmanWorkspace
+    url: https://www.postman.com/kinlaneapi/chef/overview
   - type: Packages
     url: packages/chef-packages.yml
   - type: CLI
