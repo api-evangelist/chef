@@ -1,0 +1,193 @@
+{
+  "info": {
+    "_postman_id": "6e5bea86-60e1-4124-8a25-5f82f6a549f8",
+    "name": "Chef Automate Channels Cookbooks API",
+    "description": "REST API for Chef Automate providing visibility into infrastructure convergence, compliance scans, and application deployment. Includes endpoints for nodes, profiles, scans, and reports.\n\nContact Support:\n Name: Chef Software",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:20:10.000Z",
+    "updatedAt": "2026-07-28T01:20:10.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-6e5bea86-60e1-4124-8a25-5f82f6a549f8"
+  },
+  "item": [
+    {
+      "name": "cookbooks",
+      "item": [
+        {
+          "name": "{cookbookName}",
+          "item": [
+            {
+              "name": "Get cookbook versions",
+              "id": "a2025b2c-2113-41a3-9e88-dcd20d536a5d",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/cookbooks/:cookbookName",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "cookbooks",
+                    ":cookbookName"
+                  ],
+                  "variable": [
+                    {
+                      "id": "4385487b-c1ff-455f-9064-f25423cef335",
+                      "key": "cookbookName",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "04d98e78-6e3c-4063-a265-859bf01155e5",
+                  "name": "Cookbook versions",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "api-token",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/cookbooks/:cookbookName",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "cookbooks",
+                        ":cookbookName"
+                      ],
+                      "variable": [
+                        {
+                          "key": "cookbookName"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:20:10.000Z",
+                  "updatedAt": "2026-07-28T01:20:10.000Z",
+                  "uid": "35240-04d98e78-6e3c-4063-a265-859bf01155e5"
+                }
+              ],
+              "createdAt": "2026-07-28T01:20:10.000Z",
+              "updatedAt": "2026-07-28T01:20:10.000Z",
+              "uid": "35240-a2025b2c-2113-41a3-9e88-dcd20d536a5d"
+            }
+          ],
+          "id": "317d21a4-c67e-4478-afcc-51fb3c0ef107",
+          "createdAt": "2026-07-28T01:20:10.000Z",
+          "updatedAt": "2026-07-28T01:20:10.000Z",
+          "uid": "35240-317d21a4-c67e-4478-afcc-51fb3c0ef107"
+        },
+        {
+          "name": "List cookbooks",
+          "id": "9b95625f-1801-4593-8f52-b6217d2dc1dc",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/cookbooks",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "cookbooks"
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "fcc88f0c-d00a-4511-bd9d-b1b73bda1621",
+              "name": "Cookbook list",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "api-token",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/cookbooks",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "cookbooks"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T01:20:10.000Z",
+              "updatedAt": "2026-07-28T01:20:10.000Z",
+              "uid": "35240-fcc88f0c-d00a-4511-bd9d-b1b73bda1621"
+            }
+          ],
+          "createdAt": "2026-07-28T01:20:10.000Z",
+          "updatedAt": "2026-07-28T01:20:10.000Z",
+          "uid": "35240-9b95625f-1801-4593-8f52-b6217d2dc1dc"
+        }
+      ],
+      "id": "1af5db07-b8f7-4a2d-9242-d638b9a22552",
+      "createdAt": "2026-07-28T01:20:10.000Z",
+      "updatedAt": "2026-07-28T01:20:10.000Z",
+      "uid": "35240-1af5db07-b8f7-4a2d-9242-d638b9a22552"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "api-token",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "automate",
+      "value": "automate.example.com"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{automate}}/api/v0"
+    }
+  ]
+}

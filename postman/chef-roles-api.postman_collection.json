@@ -1,0 +1,280 @@
+{
+  "info": {
+    "_postman_id": "65cc9d47-cdda-4650-a549-d6a35142e3ec",
+    "name": "Chef Automate Channels Roles API",
+    "description": "REST API for Chef Automate providing visibility into infrastructure convergence, compliance scans, and application deployment. Includes endpoints for nodes, profiles, scans, and reports.\n\nContact Support:\n Name: Chef Software",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:20:33.000Z",
+    "updatedAt": "2026-07-28T01:20:33.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-65cc9d47-cdda-4650-a549-d6a35142e3ec"
+  },
+  "item": [
+    {
+      "name": "roles",
+      "item": [
+        {
+          "name": "{roleName}",
+          "item": [
+            {
+              "name": "Get a role",
+              "id": "034b5d0d-fea0-4606-9ee7-9224dd6add60",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/roles/:roleName",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "roles",
+                    ":roleName"
+                  ],
+                  "variable": [
+                    {
+                      "id": "a6034db8-9ae0-4a76-abf6-8244e7f7ea32",
+                      "key": "roleName",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "345f2e58-c53f-4608-8900-3d66ffa82f46",
+                  "name": "Role",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "api-token",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/roles/:roleName",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "roles",
+                        ":roleName"
+                      ],
+                      "variable": [
+                        {
+                          "key": "roleName"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:20:34.000Z",
+                  "updatedAt": "2026-07-28T01:20:34.000Z",
+                  "uid": "35240-345f2e58-c53f-4608-8900-3d66ffa82f46"
+                }
+              ],
+              "createdAt": "2026-07-28T01:20:34.000Z",
+              "updatedAt": "2026-07-28T01:20:34.000Z",
+              "uid": "35240-034b5d0d-fea0-4606-9ee7-9224dd6add60"
+            }
+          ],
+          "id": "5d95fd1e-34e2-4e56-a32e-54eb6c5bd5ea",
+          "createdAt": "2026-07-28T01:20:34.000Z",
+          "updatedAt": "2026-07-28T01:20:34.000Z",
+          "uid": "35240-5d95fd1e-34e2-4e56-a32e-54eb6c5bd5ea"
+        },
+        {
+          "name": "List roles",
+          "id": "573b6da9-aa4f-4d41-b9bd-ee5e1296263e",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/roles",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "roles"
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "ebbf7c98-5612-4fdb-b66d-f50411465f83",
+              "name": "Role list",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "api-token",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/roles",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "roles"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T01:20:34.000Z",
+              "updatedAt": "2026-07-28T01:20:34.000Z",
+              "uid": "35240-ebbf7c98-5612-4fdb-b66d-f50411465f83"
+            }
+          ],
+          "createdAt": "2026-07-28T01:20:34.000Z",
+          "updatedAt": "2026-07-28T01:20:34.000Z",
+          "uid": "35240-573b6da9-aa4f-4d41-b9bd-ee5e1296263e"
+        },
+        {
+          "name": "Create a role",
+          "id": "c1c54cf0-7f80-4d2f-a14b-8190a22c7830",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/roles",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "roles"
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f020be10-47a8-48cc-a317-345c9a984a8a",
+              "name": "Role created",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "api-token",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/roles",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "roles"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T01:20:34.000Z",
+              "updatedAt": "2026-07-28T01:20:34.000Z",
+              "uid": "35240-f020be10-47a8-48cc-a317-345c9a984a8a"
+            }
+          ],
+          "createdAt": "2026-07-28T01:20:34.000Z",
+          "updatedAt": "2026-07-28T01:20:34.000Z",
+          "uid": "35240-c1c54cf0-7f80-4d2f-a14b-8190a22c7830"
+        }
+      ],
+      "id": "fdff1d1b-d257-43ba-bca5-d4014d9c65cb",
+      "createdAt": "2026-07-28T01:20:34.000Z",
+      "updatedAt": "2026-07-28T01:20:34.000Z",
+      "uid": "35240-fdff1d1b-d257-43ba-bca5-d4014d9c65cb"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "api-token",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "automate",
+      "value": "automate.example.com"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{automate}}/api/v0"
+    }
+  ]
+}

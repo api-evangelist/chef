@@ -1,0 +1,108 @@
+openapi: 3.1.0
+info:
+  title: Chef Automate API
+  description: >-
+    REST API for Chef Automate providing visibility into infrastructure
+    convergence, compliance scans, and application deployment. Includes
+    endpoints for nodes, profiles, scans, and reports.
+  version: '1.0'
+  contact:
+    name: Chef Software
+    url: https://www.chef.io/support
+externalDocs:
+  description: Chef Automate API
+  url: https://docs.chef.io/automate/api/
+servers:
+  - url: https://{automate}/api/v0
+    description: Chef Automate
+    variables:
+      automate:
+        default: automate.example.com
+tags:
+  - name: Nodes
+  - name: Profiles
+  - name: Scans
+  - name: Reports
+  - name: IAM
+security:
+  - apiToken: []
+paths:
+  /compliance/profiles:
+    get:
+      operationId: listComplianceProfiles
+      summary: List compliance profiles
+      tags: [Profiles]
+      responses:
+        '200':
+          description: Profiles list
+  /compliance/scanner/jobs:
+    post:
+      operationId: createScanJob
+      summary: Create a compliance scan job
+      tags: [Scans]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                profiles:
+                  type: array
+                  items:
+                    type: string
+                nodes:
+                  type: array
+                  items:
+                    type: string
+      responses:
+        '201':
+          description: Scan job created
+  /compliance/reporting/reports:
+    post:
+      operationId: searchReports
+      summary: Search compliance reports
+      tags: [Reports]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                filters:
+                  type: array
+                  items:
+                    type: object
+                page:
+                  type: integer
+                per_page:
+                  type: integer
+      responses:
+        '200':
+          description: Reports
+  /cfgmgmt/nodes:
+    get:
+      operationId: listManagedNodes
+      summary: List configuration management nodes
+      tags: [Nodes]
+      responses:
+        '200':
+          description: Nodes list
+  /apis/iam/v2/users:
+    get:
+      operationId: listIamUsers
+      summary: List IAM users
+      tags: [IAM]
+      responses:
+        '200':
+          description: IAM users
+components:
+  securitySchemes:
+    apiToken:
+      type: apiKey
+      in: header
+      name: api-token
+      description: API token issued through the Chef Automate UI or admin API.

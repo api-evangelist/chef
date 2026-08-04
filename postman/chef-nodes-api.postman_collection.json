@@ -1,0 +1,533 @@
+{
+  "info": {
+    "_postman_id": "a68246d8-735b-466c-8033-0fd1223f91e4",
+    "name": "Chef Automate Channels Nodes API",
+    "description": "REST API for Chef Automate providing visibility into infrastructure convergence, compliance scans, and application deployment. Includes endpoints for nodes, profiles, scans, and reports.\n\nContact Support:\n Name: Chef Software",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:20:14.000Z",
+    "updatedAt": "2026-07-28T01:20:14.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-a68246d8-735b-466c-8033-0fd1223f91e4"
+  },
+  "item": [
+    {
+      "name": "cfgmgmt",
+      "item": [
+        {
+          "name": "nodes",
+          "item": [
+            {
+              "name": "List configuration management nodes",
+              "id": "a12d4ac0-eebd-45c0-89bf-75c492c8971f",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/cfgmgmt/nodes",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "cfgmgmt",
+                    "nodes"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "6db71795-8ad6-43fd-ade7-58783c64e12b",
+                  "name": "Nodes list",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "api-token",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/cfgmgmt/nodes",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "cfgmgmt",
+                        "nodes"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:20:14.000Z",
+                  "updatedAt": "2026-07-28T01:20:14.000Z",
+                  "uid": "35240-6db71795-8ad6-43fd-ade7-58783c64e12b"
+                }
+              ],
+              "createdAt": "2026-07-28T01:20:14.000Z",
+              "updatedAt": "2026-07-28T01:20:14.000Z",
+              "uid": "35240-a12d4ac0-eebd-45c0-89bf-75c492c8971f"
+            }
+          ],
+          "id": "cc1deffb-4810-40e7-a8fe-66af9a8adb02",
+          "createdAt": "2026-07-28T01:20:14.000Z",
+          "updatedAt": "2026-07-28T01:20:14.000Z",
+          "uid": "35240-cc1deffb-4810-40e7-a8fe-66af9a8adb02"
+        }
+      ],
+      "id": "86f0261d-fbb8-4a9b-bfd5-b847ab109993",
+      "createdAt": "2026-07-28T01:20:14.000Z",
+      "updatedAt": "2026-07-28T01:20:14.000Z",
+      "uid": "35240-86f0261d-fbb8-4a9b-bfd5-b847ab109993"
+    },
+    {
+      "name": "nodes",
+      "item": [
+        {
+          "name": "{nodeName}",
+          "item": [
+            {
+              "name": "Get a node",
+              "id": "30db9bc8-fd4f-49e0-8e04-0d9fa06f0198",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/nodes/:nodeName",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "nodes",
+                    ":nodeName"
+                  ],
+                  "variable": [
+                    {
+                      "id": "975e5846-7a80-4b98-8213-e5521957c0db",
+                      "key": "nodeName",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "86a53cbb-c8c6-47a4-9a8c-d8584736cf84",
+                  "name": "Node",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "api-token",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/nodes/:nodeName",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "nodes",
+                        ":nodeName"
+                      ],
+                      "variable": [
+                        {
+                          "key": "nodeName"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:20:14.000Z",
+                  "updatedAt": "2026-07-28T01:20:14.000Z",
+                  "uid": "35240-86a53cbb-c8c6-47a4-9a8c-d8584736cf84"
+                }
+              ],
+              "createdAt": "2026-07-28T01:20:14.000Z",
+              "updatedAt": "2026-07-28T01:20:14.000Z",
+              "uid": "35240-30db9bc8-fd4f-49e0-8e04-0d9fa06f0198"
+            },
+            {
+              "name": "Update a node",
+              "id": "64ea9336-80db-4481-99e0-61c2278a9bfb",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/nodes/:nodeName",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "nodes",
+                    ":nodeName"
+                  ],
+                  "variable": [
+                    {
+                      "id": "0ec644a8-6caa-4b88-bdd7-1da6db4e50b5",
+                      "key": "nodeName",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "1caedebe-dc7e-4e2b-8f57-98dc549c8021",
+                  "name": "Node updated",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "api-token",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/nodes/:nodeName",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "nodes",
+                        ":nodeName"
+                      ],
+                      "variable": [
+                        {
+                          "key": "nodeName"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:20:14.000Z",
+                  "updatedAt": "2026-07-28T01:20:14.000Z",
+                  "uid": "35240-1caedebe-dc7e-4e2b-8f57-98dc549c8021"
+                }
+              ],
+              "createdAt": "2026-07-28T01:20:14.000Z",
+              "updatedAt": "2026-07-28T01:20:14.000Z",
+              "uid": "35240-64ea9336-80db-4481-99e0-61c2278a9bfb"
+            },
+            {
+              "name": "Delete a node",
+              "id": "e831c091-feb4-47da-8209-ce0e5cfb8743",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/nodes/:nodeName",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "nodes",
+                    ":nodeName"
+                  ],
+                  "variable": [
+                    {
+                      "id": "12a7440d-001e-4df6-98ee-a51bee74bac4",
+                      "key": "nodeName",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "949db3e0-6e0d-4fd9-8484-a204c8564c47",
+                  "name": "Node deleted",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "api-token",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/nodes/:nodeName",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "nodes",
+                        ":nodeName"
+                      ],
+                      "variable": [
+                        {
+                          "key": "nodeName"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:20:14.000Z",
+                  "updatedAt": "2026-07-28T01:20:14.000Z",
+                  "uid": "35240-949db3e0-6e0d-4fd9-8484-a204c8564c47"
+                }
+              ],
+              "createdAt": "2026-07-28T01:20:14.000Z",
+              "updatedAt": "2026-07-28T01:20:14.000Z",
+              "uid": "35240-e831c091-feb4-47da-8209-ce0e5cfb8743"
+            }
+          ],
+          "id": "65a27bb8-a3c6-4729-837c-54e100fe0534",
+          "createdAt": "2026-07-28T01:20:14.000Z",
+          "updatedAt": "2026-07-28T01:20:14.000Z",
+          "uid": "35240-65a27bb8-a3c6-4729-837c-54e100fe0534"
+        },
+        {
+          "name": "List nodes",
+          "id": "0eba6596-3821-4b16-8fa5-2bbe88150e32",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/nodes",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "nodes"
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "5ac71c08-1f1e-4987-98c8-51f71b9b7dd1",
+              "name": "Node list",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "api-token",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/nodes",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "nodes"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T01:20:14.000Z",
+              "updatedAt": "2026-07-28T01:20:14.000Z",
+              "uid": "35240-5ac71c08-1f1e-4987-98c8-51f71b9b7dd1"
+            }
+          ],
+          "createdAt": "2026-07-28T01:20:14.000Z",
+          "updatedAt": "2026-07-28T01:20:14.000Z",
+          "uid": "35240-0eba6596-3821-4b16-8fa5-2bbe88150e32"
+        },
+        {
+          "name": "Create a node",
+          "id": "7bdb2671-2e8f-4009-92a0-8b75e482fcfd",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/nodes",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "nodes"
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "0b928297-f13d-4aed-9c69-20220180edf2",
+              "name": "Node created",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "api-token",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/nodes",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "nodes"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T01:20:14.000Z",
+              "updatedAt": "2026-07-28T01:20:14.000Z",
+              "uid": "35240-0b928297-f13d-4aed-9c69-20220180edf2"
+            }
+          ],
+          "createdAt": "2026-07-28T01:20:14.000Z",
+          "updatedAt": "2026-07-28T01:20:14.000Z",
+          "uid": "35240-7bdb2671-2e8f-4009-92a0-8b75e482fcfd"
+        }
+      ],
+      "id": "c37be49d-4f67-4544-8a59-6b7e86e92b7f",
+      "createdAt": "2026-07-28T01:20:14.000Z",
+      "updatedAt": "2026-07-28T01:20:14.000Z",
+      "uid": "35240-c37be49d-4f67-4544-8a59-6b7e86e92b7f"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "api-token",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "automate",
+      "value": "automate.example.com"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{automate}}/api/v0"
+    }
+  ]
+}

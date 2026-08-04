@@ -1,0 +1,111 @@
+{
+  "info": {
+    "_postman_id": "6fa15bd7-1131-4931-b6a7-7d846515900f",
+    "name": "Chef Automate Channels Environments API",
+    "description": "REST API for Chef Automate providing visibility into infrastructure convergence, compliance scans, and application deployment. Includes endpoints for nodes, profiles, scans, and reports.\n\nContact Support:\n Name: Chef Software",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:20:12.000Z",
+    "updatedAt": "2026-07-28T01:20:12.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-6fa15bd7-1131-4931-b6a7-7d846515900f"
+  },
+  "item": [
+    {
+      "name": "environments",
+      "item": [
+        {
+          "name": "List environments",
+          "id": "240dcd78-33a6-4cfc-9ae9-da2768e5aab4",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/environments",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "environments"
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "2ddc270e-74c4-4861-bd10-67d008528f8b",
+              "name": "Environment list",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "api-token",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/environments",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "environments"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T01:20:12.000Z",
+              "updatedAt": "2026-07-28T01:20:12.000Z",
+              "uid": "35240-2ddc270e-74c4-4861-bd10-67d008528f8b"
+            }
+          ],
+          "createdAt": "2026-07-28T01:20:12.000Z",
+          "updatedAt": "2026-07-28T01:20:12.000Z",
+          "uid": "35240-240dcd78-33a6-4cfc-9ae9-da2768e5aab4"
+        }
+      ],
+      "id": "33c4d01f-ed1c-46e3-9308-d4a0d8231ba7",
+      "createdAt": "2026-07-28T01:20:12.000Z",
+      "updatedAt": "2026-07-28T01:20:12.000Z",
+      "uid": "35240-33c4d01f-ed1c-46e3-9308-d4a0d8231ba7"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "api-token",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "automate",
+      "value": "automate.example.com"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{automate}}/api/v0"
+    }
+  ]
+}

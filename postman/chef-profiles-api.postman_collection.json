@@ -1,0 +1,122 @@
+{
+  "info": {
+    "_postman_id": "0c8b838b-15be-4974-b098-becda40b2707",
+    "name": "Chef Automate Channels Profiles API",
+    "description": "REST API for Chef Automate providing visibility into infrastructure convergence, compliance scans, and application deployment. Includes endpoints for nodes, profiles, scans, and reports.\n\nContact Support:\n Name: Chef Software",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:20:31.000Z",
+    "updatedAt": "2026-07-28T01:20:32.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-0c8b838b-15be-4974-b098-becda40b2707"
+  },
+  "item": [
+    {
+      "name": "compliance",
+      "item": [
+        {
+          "name": "profiles",
+          "item": [
+            {
+              "name": "List compliance profiles",
+              "id": "f39ea5c3-64eb-42de-bdc6-0f880a4b46f2",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/compliance/profiles",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "compliance",
+                    "profiles"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "efd7b766-83f6-4fae-904d-97fdb9e78332",
+                  "name": "Profiles list",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "api-token",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/compliance/profiles",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "compliance",
+                        "profiles"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:20:32.000Z",
+                  "updatedAt": "2026-07-28T01:20:32.000Z",
+                  "uid": "35240-efd7b766-83f6-4fae-904d-97fdb9e78332"
+                }
+              ],
+              "createdAt": "2026-07-28T01:20:32.000Z",
+              "updatedAt": "2026-07-28T01:20:32.000Z",
+              "uid": "35240-f39ea5c3-64eb-42de-bdc6-0f880a4b46f2"
+            }
+          ],
+          "id": "a5ebb2f4-c6e0-4b2b-bed9-2e7fb32448c8",
+          "createdAt": "2026-07-28T01:20:32.000Z",
+          "updatedAt": "2026-07-28T01:20:32.000Z",
+          "uid": "35240-a5ebb2f4-c6e0-4b2b-bed9-2e7fb32448c8"
+        }
+      ],
+      "id": "3ae8a014-cfc7-44f9-8f50-92f9e1c45ced",
+      "createdAt": "2026-07-28T01:20:32.000Z",
+      "updatedAt": "2026-07-28T01:20:32.000Z",
+      "uid": "35240-3ae8a014-cfc7-44f9-8f50-92f9e1c45ced"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "api-token",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "automate",
+      "value": "automate.example.com"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{automate}}/api/v0"
+    }
+  ]
+}

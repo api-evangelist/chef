@@ -1,0 +1,38 @@
+{
+  "provider": "chef",
+  "sources": [
+    "chef-channels-api-openapi.yml",
+    "chef-clients-api-openapi.yml",
+    "chef-cookbooks-api-openapi.yml",
+    "chef-data-bags-api-openapi.yml",
+    "chef-environments-api-openapi.yml",
+    "chef-iam-api-openapi.yml",
+    "chef-nodes-api-openapi.yml",
+    "chef-packages-api-openapi.yml",
+    "chef-profiles-api-openapi.yml",
+    "chef-reports-api-openapi.yml",
+    "chef-roles-api-openapi.yml",
+    "chef-scans-api-openapi.yml",
+    "chef-users-api-openapi.yml"
+  ],
+  "outputs": [
+    "chef-channels-api-openapi.yml",
+    "chef-clients-api-openapi.yml",
+    "chef-cookbooks-api-openapi.yml",
+    "chef-data-bags-api-openapi.yml",
+    "chef-environments-api-openapi.yml",
+    "chef-iam-api-openapi.yml",
+    "chef-nodes-api-openapi.yml",
+    "chef-packages-api-openapi.yml",
+    "chef-profiles-api-openapi.yml",
+    "chef-reports-api-openapi.yml",
+    "chef-roles-api-openapi.yml",
+    "chef-scans-api-openapi.yml",
+    "chef-users-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

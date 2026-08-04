@@ -1,0 +1,146 @@
+{
+  "info": {
+    "_postman_id": "02498559-0d7a-4311-9cc8-e7c71466f443",
+    "name": "Chef Automate Channels API",
+    "description": "REST API for Chef Automate providing visibility into infrastructure convergence, compliance scans, and application deployment. Includes endpoints for nodes, profiles, scans, and reports.\n\nContact Support:\n Name: Chef Software",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:20:08.000Z",
+    "updatedAt": "2026-07-28T01:20:08.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-02498559-0d7a-4311-9cc8-e7c71466f443"
+  },
+  "item": [
+    {
+      "name": "depot",
+      "item": [
+        {
+          "name": "channels",
+          "item": [
+            {
+              "name": "{origin}",
+              "item": [
+                {
+                  "name": "List channels for an origin",
+                  "id": "9f0fe564-593a-4454-9caf-f787ced02df8",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/depot/channels/:origin",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "depot",
+                        "channels",
+                        ":origin"
+                      ],
+                      "variable": [
+                        {
+                          "id": "79b27a00-0aee-4f19-a8df-f578451a7246",
+                          "key": "origin",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "a239dafc-5998-4320-8088-2ebf009e2c19",
+                      "name": "Channels",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "api-token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/depot/channels/:origin",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "depot",
+                            "channels",
+                            ":origin"
+                          ],
+                          "variable": [
+                            {
+                              "key": "origin"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:20:09.000Z",
+                      "updatedAt": "2026-07-28T01:20:09.000Z",
+                      "uid": "35240-a239dafc-5998-4320-8088-2ebf009e2c19"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:20:09.000Z",
+                  "updatedAt": "2026-07-28T01:20:09.000Z",
+                  "uid": "35240-9f0fe564-593a-4454-9caf-f787ced02df8"
+                }
+              ],
+              "id": "641d97d6-6a3b-49b1-9a1c-d0efa53bd9dd",
+              "createdAt": "2026-07-28T01:20:09.000Z",
+              "updatedAt": "2026-07-28T01:20:09.000Z",
+              "uid": "35240-641d97d6-6a3b-49b1-9a1c-d0efa53bd9dd"
+            }
+          ],
+          "id": "0aba414d-fad8-4cd7-85ad-0cae9f184358",
+          "createdAt": "2026-07-28T01:20:09.000Z",
+          "updatedAt": "2026-07-28T01:20:09.000Z",
+          "uid": "35240-0aba414d-fad8-4cd7-85ad-0cae9f184358"
+        }
+      ],
+      "id": "9518fc3f-16cb-4651-a3a0-d1888e876c5d",
+      "createdAt": "2026-07-28T01:20:09.000Z",
+      "updatedAt": "2026-07-28T01:20:09.000Z",
+      "uid": "35240-9518fc3f-16cb-4651-a3a0-d1888e876c5d"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "api-token",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "automate",
+      "value": "automate.example.com"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{automate}}/api/v0"
+    }
+  ]
+}

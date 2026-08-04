@@ -1,0 +1,162 @@
+{
+  "info": {
+    "_postman_id": "717f41df-f252-4d37-854a-0c20c319c2d5",
+    "name": "Chef Automate Channels Scans API",
+    "description": "REST API for Chef Automate providing visibility into infrastructure convergence, compliance scans, and application deployment. Includes endpoints for nodes, profiles, scans, and reports.\n\nContact Support:\n Name: Chef Software",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:20:34.000Z",
+    "updatedAt": "2026-07-28T01:20:34.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-717f41df-f252-4d37-854a-0c20c319c2d5"
+  },
+  "item": [
+    {
+      "name": "compliance",
+      "item": [
+        {
+          "name": "scanner",
+          "item": [
+            {
+              "name": "jobs",
+              "item": [
+                {
+                  "name": "Create a compliance scan job",
+                  "id": "499000b1-0abb-4c14-8cc9-bb49c5cae9d6",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"profiles\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"nodes\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/compliance/scanner/jobs",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "compliance",
+                        "scanner",
+                        "jobs"
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "205fbee5-6448-47bd-b599-ea9304bf2adc",
+                      "name": "Scan job created",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "api-token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"profiles\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"nodes\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/compliance/scanner/jobs",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "compliance",
+                            "scanner",
+                            "jobs"
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:20:35.000Z",
+                      "updatedAt": "2026-07-28T01:20:35.000Z",
+                      "uid": "35240-205fbee5-6448-47bd-b599-ea9304bf2adc"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:20:35.000Z",
+                  "updatedAt": "2026-07-28T01:20:35.000Z",
+                  "uid": "35240-499000b1-0abb-4c14-8cc9-bb49c5cae9d6"
+                }
+              ],
+              "id": "d591892b-5d7e-431f-b264-e957f764429d",
+              "createdAt": "2026-07-28T01:20:35.000Z",
+              "updatedAt": "2026-07-28T01:20:35.000Z",
+              "uid": "35240-d591892b-5d7e-431f-b264-e957f764429d"
+            }
+          ],
+          "id": "1942f788-c8bc-4cfd-afff-5ecfdd940ccd",
+          "createdAt": "2026-07-28T01:20:35.000Z",
+          "updatedAt": "2026-07-28T01:20:35.000Z",
+          "uid": "35240-1942f788-c8bc-4cfd-afff-5ecfdd940ccd"
+        }
+      ],
+      "id": "b026ff8b-5f88-4d43-9863-91aa9373706f",
+      "createdAt": "2026-07-28T01:20:35.000Z",
+      "updatedAt": "2026-07-28T01:20:35.000Z",
+      "uid": "35240-b026ff8b-5f88-4d43-9863-91aa9373706f"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "api-token",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "automate",
+      "value": "automate.example.com"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{automate}}/api/v0"
+    }
+  ]
+}
