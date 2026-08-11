@@ -367,6 +367,8 @@ apis:
   - type: Authentication
     url: https://docs.habitat.sh/docs/using-builder/
 common:
+  - type: Overlay
+    url: overlays/chef-automate-api-overlay.yaml
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/chef/overview
   - type: Packages
