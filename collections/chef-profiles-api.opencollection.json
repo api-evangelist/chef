@@ -1,0 +1,37 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Chef Automate Channels Profiles API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "api-token",
+      "value": "{{api-token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Profiles",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List compliance profiles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{automate}/api/v0/compliance/profiles"
+          },
+          "docs": "List compliance profiles"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

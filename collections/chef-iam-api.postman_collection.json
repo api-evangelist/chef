@@ -1,0 +1,149 @@
+{
+  "item": [
+    {
+      "id": "a4d8dda9-3471-4537-9cd9-7e9d8f45b6bf",
+      "name": "IAM",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0104f6dc-9cb4-4e52-b6ee-284a88fc9f97",
+          "name": "List IAM users",
+          "request": {
+            "name": "List IAM users",
+            "description": {},
+            "url": {
+              "path": [
+                "apis",
+                "iam",
+                "v2",
+                "users"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{automate}}",
+                  "key": "automate"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "70ab91d1-9346-4041-b51d-e88ecd5b4bcf",
+              "name": "IAM users",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "apis",
+                    "iam",
+                    "v2",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "type": "any",
+                      "value": "{{automate}}",
+                      "key": "automate"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "api-token",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "automate.example.com",
+      "key": "automate"
+    },
+    {
+      "type": "string",
+      "value": "https://{{automate}}/api/v0",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "api-token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "b4ce6224-c999-4459-92d6-6e8f97fc2ef0",
+    "name": "Chef Automate Channels IAM API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for Chef Automate providing visibility into infrastructure convergence, compliance scans, and application deployment. Includes endpoints for nodes, profiles, scans, and reports.\n\nContact Support:\n Name: Chef Software",
+      "type": "text/plain"
+    }
+  }
+}

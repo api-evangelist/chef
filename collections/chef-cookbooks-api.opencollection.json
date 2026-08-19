@@ -1,0 +1,55 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Chef Automate Channels Cookbooks API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "api-token",
+      "value": "{{api-token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Cookbooks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List cookbooks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{automate}/api/v0/cookbooks"
+          },
+          "docs": "List cookbooks"
+        },
+        {
+          "info": {
+            "name": "Get cookbook versions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{automate}/api/v0/cookbooks/:cookbookName",
+            "params": [
+              {
+                "name": "cookbookName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get cookbook versions"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

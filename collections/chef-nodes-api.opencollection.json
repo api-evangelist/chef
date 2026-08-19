@@ -1,0 +1,121 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Chef Automate Channels Nodes API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "api-token",
+      "value": "{{api-token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Nodes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List configuration management nodes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{automate}/api/v0/cfgmgmt/nodes"
+          },
+          "docs": "List configuration management nodes"
+        },
+        {
+          "info": {
+            "name": "List nodes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{automate}/api/v0/nodes"
+          },
+          "docs": "List nodes"
+        },
+        {
+          "info": {
+            "name": "Create a node",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{automate}/api/v0/nodes",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a node"
+        },
+        {
+          "info": {
+            "name": "Get a node",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{automate}/api/v0/nodes/:nodeName",
+            "params": [
+              {
+                "name": "nodeName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a node"
+        },
+        {
+          "info": {
+            "name": "Update a node",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{automate}/api/v0/nodes/:nodeName",
+            "params": [
+              {
+                "name": "nodeName",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a node"
+        },
+        {
+          "info": {
+            "name": "Delete a node",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{automate}/api/v0/nodes/:nodeName",
+            "params": [
+              {
+                "name": "nodeName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a node"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
