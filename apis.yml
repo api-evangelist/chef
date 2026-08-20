@@ -348,6 +348,8 @@ apis:
   humanURL: https://docs.chef.io/server/api_chef_server/
   baseURL: https://chef.example.com/organizations/example
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
