@@ -16,8 +16,17 @@ info:
     the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: chefAutomateApi
-  url: ../openapi/chef-automate-api-openapi.yml
+- name: nodesApi
+  url: ../openapi/chef-nodes-api-openapi.yml
+  type: openapi
+- name: profilesApi
+  url: ../openapi/chef-profiles-api-openapi.yml
+  type: openapi
+- name: reportsApi
+  url: ../openapi/chef-reports-api-openapi.yml
+  type: openapi
+- name: scansApi
+  url: ../openapi/chef-scans-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: run-compliance-scan

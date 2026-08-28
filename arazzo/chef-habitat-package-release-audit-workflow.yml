@@ -15,8 +15,11 @@ info:
     description.
   version: 1.0.0
 sourceDescriptions:
-- name: chefHabitatBuilderApi
-  url: ../openapi/chef-habitat-builder-api-openapi.yml
+- name: channelsApi
+  url: ../openapi/chef-channels-api-openapi.yml
+  type: openapi
+- name: packagesApi
+  url: ../openapi/chef-packages-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: audit-origin-releases

@@ -14,8 +14,8 @@ info:
     without opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: chefInfraServerApi
-  url: ../openapi/chef-infra-server-api-openapi.yml
+- name: nodesApi
+  url: ../openapi/chef-nodes-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: decommission-node

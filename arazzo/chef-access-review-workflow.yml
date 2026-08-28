@@ -17,11 +17,14 @@ info:
     be read and executed without opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: chefInfraServerApi
-  url: ../openapi/chef-infra-server-api-openapi.yml
+- name: clientsApi
+  url: ../openapi/chef-clients-api-openapi.yml
   type: openapi
-- name: chefAutomateApi
-  url: ../openapi/chef-automate-api-openapi.yml
+- name: iamApi
+  url: ../openapi/chef-iam-api-openapi.yml
+  type: openapi
+- name: usersApi
+  url: ../openapi/chef-users-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: review-access
