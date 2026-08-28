@@ -5,6 +5,18 @@ description: >-
   REST APIs for the Infra Server (managing nodes, cookbooks, roles, environments, and data bags), Chef Automate
   (visibility into convergence, compliance, and deployment), Habitat Builder (application packaging and delivery), and
   InSpec (a language and runner for security and compliance testing).
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
