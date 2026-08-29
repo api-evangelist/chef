@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Chef Automate Channels Profiles API
+  title: Chef Automate Profiles API
   description: REST API for Chef Automate providing visibility into infrastructure convergence, compliance scans, and application deployment. Includes endpoints for nodes, profiles, scans, and reports.
   version: '1.0'
   contact:

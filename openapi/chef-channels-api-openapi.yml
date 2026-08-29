@@ -1,19 +1,16 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Chef Automate Channels API
-  description: REST API for Chef Automate providing visibility into infrastructure convergence, compliance scans, and application deployment. Includes endpoints for nodes, profiles, scans, and reports.
+  title: Chef Habitat Builder Channels API
+  description: REST API for Chef Habitat Builder, the package management service for Habitat application packages. Manages origins, packages, channels, and deployment events.
   version: '1.0'
   contact:
     name: Chef Software
     url: https://www.chef.io/support
 servers:
-- url: https://{automate}/api/v0
-  description: Chef Automate
-  variables:
-    automate:
-      default: automate.example.com
+- url: https://bldr.habitat.sh/v1
+  description: Public Habitat Builder
 security:
-- apiToken: []
+- habitatToken: []
 tags:
 - name: Channels
 paths:
@@ -34,11 +31,10 @@ paths:
           description: Channels
 components:
   securitySchemes:
-    apiToken:
-      type: apiKey
-      in: header
-      name: api-token
-      description: API token issued through the Chef Automate UI or admin API.
+    habitatToken:
+      type: http
+      scheme: bearer
+      bearerFormat: HabitatBuilderToken
 externalDocs:
-  description: Chef Automate API
-  url: https://docs.chef.io/automate/api/
+  description: Habitat Builder Documentation
+  url: https://docs.habitat.sh/docs/using-builder/

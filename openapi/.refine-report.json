@@ -1,38 +1,48 @@
 {
   "provider": "chef",
   "sources": [
-    "chef-channels-api-openapi.yml",
-    "chef-clients-api-openapi.yml",
-    "chef-cookbooks-api-openapi.yml",
-    "chef-data-bags-api-openapi.yml",
-    "chef-environments-api-openapi.yml",
-    "chef-iam-api-openapi.yml",
-    "chef-nodes-api-openapi.yml",
-    "chef-packages-api-openapi.yml",
-    "chef-profiles-api-openapi.yml",
-    "chef-reports-api-openapi.yml",
-    "chef-roles-api-openapi.yml",
-    "chef-scans-api-openapi.yml",
-    "chef-users-api-openapi.yml"
+    "_original/chef-automate-api-openapi.yml",
+    "_original/chef-habitat-builder-api-openapi.yml",
+    "_original/chef-infra-server-api-openapi.yml"
   ],
   "outputs": [
+    "chef-iam-api-openapi.yml",
+    "chef-nodes-api-openapi.yml",
+    "chef-profiles-api-openapi.yml",
+    "chef-reports-api-openapi.yml",
+    "chef-scans-api-openapi.yml",
     "chef-channels-api-openapi.yml",
+    "chef-packages-api-openapi.yml",
     "chef-clients-api-openapi.yml",
     "chef-cookbooks-api-openapi.yml",
     "chef-data-bags-api-openapi.yml",
     "chef-environments-api-openapi.yml",
-    "chef-iam-api-openapi.yml",
-    "chef-nodes-api-openapi.yml",
-    "chef-packages-api-openapi.yml",
-    "chef-profiles-api-openapi.yml",
-    "chef-reports-api-openapi.yml",
     "chef-roles-api-openapi.yml",
-    "chef-scans-api-openapi.yml",
     "chef-users-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (3 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "chef-automate-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "chef-habitat-builder-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "chef-infra-server-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "tag 'Nodes' spans 2 source specs (chef-automate-api-openapi.yml, chef-infra-server-api-openapi.yml): per-path servers applied"
+  ],
+  "skipped": [
+    "chef-channels-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "chef-clients-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "chef-cookbooks-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "chef-data-bags-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "chef-environments-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "chef-iam-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "chef-nodes-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "chef-packages-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "chef-profiles-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "chef-reports-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "chef-roles-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "chef-scans-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "chef-users-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
