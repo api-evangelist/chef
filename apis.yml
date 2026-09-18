@@ -170,6 +170,8 @@ apis:
   humanURL: https://docs.chef.io/server/api_chef_server/
   baseURL: https://chef.example.com/organizations/example
   tags:
+  - Environment
+  tags_raw:
   - Environments
   properties:
   - type: OpenAPI
@@ -194,6 +196,8 @@ apis:
   humanURL: https://docs.chef.io/server/api_chef_server/
   baseURL: https://chef.example.com/organizations/example
   tags:
+  - Identity and Access Management
+  tags_raw:
   - IAM
   properties:
   - type: OpenAPI
@@ -218,6 +222,8 @@ apis:
   humanURL: https://docs.chef.io/server/api_chef_server/
   baseURL: https://chef.example.com/organizations/example
   tags:
+  - Node
+  tags_raw:
   - Nodes
   properties:
   - type: OpenAPI
